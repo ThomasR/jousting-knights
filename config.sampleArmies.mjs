@@ -18,6 +18,7 @@
 let myArmies = [
   ['alfil dromedary dabbaba', 'black red cyan yellow'],
   ['alfil ferz giraffe antelope', 'white red blue gold green'],
+  ['alfil giraffe wazir antelope zebra', 'black yellow cyan red lime pink'],
   ['antelope antelope wazir', 'white cyan orange purple'],
   ['antelope camel knight', 'white cyan purple gold'],
   ['antelope camel', 'white blue red'],
@@ -41,7 +42,7 @@ let myArmies = [
   ['dromedary dromedary knight antelope alfil', 'white red blue gold green orange'],
   ['dromedary zebra', 'white blue black'],
   ['dromedary zebra antelope', 'white red black green'],
-  ['ferz antelope dabbaba', 'white yellow red green'],
+  ['ferz antelope dabbaba', 'black yellow blue red'],
   ['ferz camel dabbaba wazir', 'white red black yellow purple'],
   ['ferz dabbaba antelope', 'black red yellow cyan'],
   ['ferz stag alfil', 'white blue lime gold'],

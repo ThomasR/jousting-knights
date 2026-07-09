@@ -89,6 +89,20 @@ It's all static files, no build required. Just copy all files in the base folder
 <a href="./gallery/alfil-dromedary-dabbaba-100_000_000.png">Full image (⚠️️ 21MB file)</a><br>
 <a href="https://thomas-rosenau.de/jousting-knights/#palette=black+red+cyan+yellow&army=alfil+dromedary+dabbaba">Interactive version</a>
 
+</div><hr/>
+
+<div align="center"><img src="./gallery/alfil-giraffe-wazir-antelope-zebra-16_000_000-scaled.png" width="500" height="500" alt="Yellow Alfil, Cyan Giraffe, Red Wazir, Green Antelope, Pink Zebra Pattern"><br>Yellow Alfil, Cyan Giraffe, Red Wazir, Green Antelope, Pink Zebra<br><br>
+<img src="./gallery/alfil-giraffe-wazir-antelope-zebra-16_000_000-cut.png" width="500" height="500" alt="Yellow Alfil, Cyan Giraffe, Red Wazir, Green Antelope, Pink Zebra Pattern Detail"><br>Detail<br><br>
+<a href="./gallery/alfil-giraffe-wazir-antelope-zebra-16_000_000.png">Full image</a><br>
+<a href="https://thomas-rosenau.de/jousting-knights/#palette=black+yellow+cyan+red+lime+pink&army=alfil+giraffe+wazir+antelope+zebra">Interactive version</a>
+
+</div><hr/>
+
+<div align="center"><img src="./gallery/ferz-antelope-dabbaba-100_000_000-scaled.png" width="500" height="500" alt="Yellow Ferz, Blue Antelope, Red Dabbaba Pattern"><br>Yellow Ferz, Blue Antelope, Red Dabbaba<br>Note: The orange color comes from a mix of red and yellow pixels<br><br>
+<img src="./gallery/ferz-antelope-dabbaba-100_000_000-cut.png" width="500" height="500" alt="Yellow Ferz, Blue Antelope, Red Dabbaba Pattern Detail"><br>Detail<br><br>
+<a href="./gallery/ferz-antelope-dabbaba-100_000_000.png">Full image</a><br>
+<a href="https://thomas-rosenau.de/jousting-knights/#palette=black+yellow+blue+red&army=ferz+antelope+dabbaba">Interactive version</a>
+
 </div>
 
 ## License
