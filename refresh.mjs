@@ -16,12 +16,12 @@
 */
 
 import { boardSizes, nnbsp } from './config.mjs';
-import configPieceLibrary from './config.pieceLibrary.mjs';
 import updateBoard from './workerBridge.mjs';
 import { colors } from './config.mjs';
 
 import { armyInput, sizeInput, paletteInput, paintRateInput, boardSizeInfo, saveButton } from './htmlElements.mjs';
 import { updateUrl } from './url.mjs';
+import { updateTitle } from './page.mjs';
 
 let lastValid = null;
 
@@ -38,7 +38,7 @@ export default function refresh(initial) {
       return;
     }
   }
-  let army = armyInput.value.toLowerCase().trim().split(/[\s,]+/g);
+  let army = armyInput.value.toLowerCase().trim().split(/[\s,]+/g).filter(Boolean);
 
   let requiredPaletteLength = army.length + 1;
   paletteInput.setAttribute('pattern', paletteInput.getAttribute('pattern').replace(/\d+/, requiredPaletteLength));
@@ -69,6 +69,8 @@ export default function refresh(initial) {
   lastValid = currentValid;
 
   updateUrl();
+
+  updateTitle(army);
 
   updateBoard({
     army,

@@ -17,6 +17,8 @@
 
 export const nnbsp = '\u{0202F}';
 
+export const titleTemplate = 'Jousting {{army}}';
+
 export const boardSizes = [
   500,
   4_000,
