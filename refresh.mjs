@@ -1,0 +1,79 @@
+/*
+* Copyright 2026 Thomas Rosenau
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+*/
+
+import { boardSizes, nnbsp } from './config.mjs';
+import configPieceLibrary from './config.pieceLibrary.mjs';
+import updateBoard from './workerBridge.mjs';
+import { colors } from './config.mjs';
+
+import { armyInput, sizeInput, paletteInput, paintRateInput, boardSizeInfo, saveButton } from './htmlElements.mjs';
+import { updateUrl } from './url.mjs';
+
+let lastValid = null;
+
+export default function refresh(initial) {
+  let desiredSquareCount = boardSizes[sizeInput.value] ?? boardSizes[0];
+
+  boardSizeInfo.textContent = `${String(desiredSquareCount).replaceAll(/(.)(?=(?:.{3})+$)/g, `$1${nnbsp}`)}${nnbsp}px`;
+
+  let isArmyValid = armyInput.checkValidity();
+  if (!isArmyValid) {
+    if (initial) {
+      armyInput.value = armyInput.defaultValue;
+    } else {
+      return;
+    }
+  }
+  let army = armyInput.value.toLowerCase().trim().split(/[\s,]+/g);
+
+  let requiredPaletteLength = army.length + 1;
+  paletteInput.setAttribute('pattern', paletteInput.getAttribute('pattern').replace(/\d+/, requiredPaletteLength));
+  let paletteLabel = paletteInput.closest('label');
+  paletteLabel.dataset.invalidMessage = paletteLabel.dataset.invalidMessage.replace(/\d+/, requiredPaletteLength);
+
+  let isPaletteValid = paletteInput.checkValidity();
+  if (!isPaletteValid) {
+    if (initial) {
+      paletteInput.value = paletteInput.defaultValue;
+    } else {
+      return;
+    }
+  }
+  let palette = paletteInput.value.toLowerCase().trim().split(/[\s,]+/g).slice(0, requiredPaletteLength).map(color => colors[color]);
+
+  let sizeStr = String(desiredSquareCount).replace(/000000$/, '_000000').replace(/000$/, '_000');
+  saveButton.dataset.filename = `${army.join('-')}-${sizeStr}.png`;
+
+  const paintRate = Number(paintRateInput.value);
+
+  let currentValid = `${desiredSquareCount}-${paintRate}-${army.join(',')}-${palette.flat()
+    .join(',')}`;
+  if (currentValid === lastValid) {
+    // prevent refresh after user has only entered whitespace
+    return;
+  }
+  lastValid = currentValid;
+
+  updateUrl();
+
+  updateBoard({
+    army,
+    paintRate,
+    desiredSquareCount,
+    palette
+  });
+};

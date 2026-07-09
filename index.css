@@ -1,0 +1,155 @@
+/*
+ * Copyright 2026 Thomas Rosenau
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+:root {
+    --form-theme-color: #467;
+}
+
+body {
+    background: white;
+}
+
+header, main {
+    width: calc(50vw - 2rem);
+}
+
+label:has(small) {
+    flex-direction: column;
+    align-items: stretch !important;
+}
+label[data-invalid-message] {
+    &:not(:last-child) {
+        margin-bottom: -.75em !important;
+    }
+    &::after {
+        content: attr(data-invalid-message);
+        font-size: max(80%, 13px) !important;
+        pointer-events: none;
+        opacity: 0;
+        color: var(--form-field-invalid-color);
+        transition: opacity .4s ease;
+    }
+
+    &:has(:invalid)::after {
+        opacity: 1;
+        transition-delay: 5s;
+    }
+}
+
+.canvas-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+    overflow: hidden;
+    max-width: calc(50vw - 2 * 10px);
+    height: calc(100vh - 2 * 10px);
+    max-height: calc(50vw - 2 * 10px);
+    margin: auto 0;
+    box-shadow: 0 0 10px gray;
+    aspect-ratio: 1 / 1;
+
+    &:hover::before,
+    &:hover::after {
+        display: block;
+        content: "";
+        z-index: 1;
+        position: absolute;
+        background: black;
+        box-shadow: 0 0 0 1px hsl(none 0% 100% / 0.75);
+    }
+
+    &:hover::before {
+        top: 0;
+        left: calc(50% - 1px / 2);
+        width: 1px;
+        height: 100%;
+    }
+
+    &:hover::after {
+        top: calc(50% - 1px / 2);
+        left: 0;
+        width: 100%;
+        height: 1px;
+    }
+}
+
+canvas#output {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    image-rendering: crisp-edges;
+}
+
+fieldset {
+    display: initial;
+}
+
+form {
+    margin-bottom: 1rem;
+}
+
+button {
+    width: auto;
+    min-width: auto;
+    margin: .2rem;
+    vertical-align: top;
+}
+
+.tickmarks {
+    line-height: 0;
+    position: relative;
+    flex: 1;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    isolation: isolate;
+}
+
+.tickmarks::before {
+    display: block;
+    content: "";
+    z-index: -1;
+    position: absolute;
+    top: -.15em;
+    right: .6em;
+    left: .6em;
+    height: 1.5em;
+    pointer-events: none;
+    opacity: 0.4;
+    background: repeating-linear-gradient(to right, #0005 0 2px, transparent 2px calc((100% - 2px) / (var(--ticks) - 1)));
+}
+
+@media (max-width: 800px) {
+    header, main {
+        width: 100%;
+    }
+
+    .canvas-container {
+        position: relative;
+        max-width: 100%;
+        width: 100%;
+        max-height: 100%;
+        height: 100%;
+        margin: 0;
+        top: unset;
+        right: unset;
+        bottom: unset;
+    }
+}

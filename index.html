@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jousting Knights</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐴</text></svg>">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="/shared/css/base.css">
+  <link rel="stylesheet" href="/shared/css/form.css">
+  <link rel="stylesheet" href="./index.css">
+  <script src="./index.mjs" type="module" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>Jousting Knights</h1>
+    <p>As presented by <a href="https://www.youtube.com/@numberphile">Numberphile</a>.</p>
+    <p>If you don't know what this is, watch <a href="https://www.youtube.com/watch?v=UiX4CFIiegM&t=83s">
+      Red & Black Knights (extraordinary result)</a>
+       and <a href="https://www.youtube.com/watch?v=VgmDuBCayPw&t=43s">Amazing Chessboard Patterns (extra)</a>.</p>
+    <p>Here, you can also use <i>camels</i>, <i>giraffes</i>, and <i>stags</i>, which move in a 3×1&ThinSpace;/&ThinSpace;4×1&ThinSpace;/&ThinSpace;4×2 pattern,
+       respectively.</p>
+  </header>
+  <main>
+    <form id="knightsForm">
+      <label>
+        <span>Board size: <span id="board-size-info"></span></span>
+        <span class="tickmarks" style="--ticks: 2"><input type="range" id="boardSize" name="boardSize" min="0" max="1"
+          value="1"></span>
+        <small>Large board sizes may lead to high memory consumption and long calculation times. Press Escape to interrupt.</small>
+      </label>
+      <label>
+        <span>Preview update rate:</span>
+        <span class="tickmarks" style="--ticks: 3"><input type="range" id="paintRate" name="paintRate" min="0" max="2"
+          value="1"></span>
+        <small>Higher is good for monitoring progress, but comes with a significant performance impact.</small>
+      </label>
+      <label data-invalid-message="Please pick 2 from the list">
+        <span>Color palette</span>
+        <input type="text" id="palette" name="palette" value="white black red" required>
+        <small id="palette-info"></small> <small>The first value is for empty squares.</small>
+      </label>
+      <label data-invalid-message="Please pick from the list.">
+        <span>Army</span>
+        <input type="text" id="army" name="army" value="knight knight" required>
+        <small id="army-info"></small>
+      </label>
+      <button id="randomize">🎲&#x202F;Random Army!</button>
+    </form>
+    <form>
+      <button id="save">💾&#x202F;Save as PNG</button>
+    </form>
+    <div class="canvas-container">
+      <canvas id="output"></canvas>
+    </div>
+  </main>
+  <footer>📜&#x202F;<a href="https://github.com/ThomasR/jousting-knights">Source Code on GitHub</a></footer>
+
+</body>
+</html>
