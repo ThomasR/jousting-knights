@@ -36,54 +36,57 @@ It's all static files, no build required. Just copy all files in the base folder
 
 ## Gallery
 
-<div align="center"><img src="./gallery/knight-knight-250_000.png" width="250" height="250" alt="Red &amp; Black Knights Pattern"><br>Red &amp; Black Knights<br>
+<div align="center"><img src="./gallery/knight-knight-250_000.png" width="500" height="500" alt="Red &amp; Black Knights Pattern"><br>Red &amp; Black Knights<br>
 <a href="./gallery/knight-knight-250_000.png">Full image</a><br>
 <a href="https://thomas-rosenau.de/jousting-knights/#palette=white+red+black&army=knight+knight">Interactive version</a>
 </div><hr/>
 
-<div align="center"><img src="./gallery/dabbaba-wazir-zebra-250_000.png" width="250" height="250" alt="Red Dabbaba, Yellow Wazir, Black Zebra Pattern"><br>Red Dabbaba, Yellow Wazir, Black Zebra<br>
+<div align="center"><img src="./gallery/dabbaba-wazir-zebra-250_000.png" width="500" height="500" alt="Red Dabbaba, Yellow Wazir, Black Zebra Pattern"><br>Red Dabbaba, Yellow Wazir, Black Zebra<br>
 <a href="./gallery/dabbaba-wazir-zebra-250_000.png">Full image</a><br>
 <a href="https://thomas-rosenau.de/jousting-knights/#palette=white+red+gold+black&army=dabbaba+wazir+zebra">Interactive version</a>
 </div><hr/>
 
-<div align="center"><img src="./gallery/giraffe-dromedary-camel-100_000_000-cut.png" width="250" height="250" alt="Red Giraffe, Green Dromedary, Blue Camel Pattern Detail"><br>Red Giraffe, Green Dromedary, Blue Camel (detail)<br>
+<div align="center"><img src="./gallery/giraffe-dromedary-camel-100_000_000-scaled.png" width="500" height="500" alt="Red Giraffe, Green Dromedary, Blue Camel Pattern"><br>Red Giraffe, Green Dromedary, Blue Camel<br><br>
+<img src="./gallery/giraffe-dromedary-camel-100_000_000-cut.png" width="500" height="500" alt="Red Giraffe, Green Dromedary, Blue Camel Pattern Detail"><br>Detail<br><br>
 <a href="./gallery/giraffe-dromedary-camel-100_000_000.png">Full image</a><br>
 <a href="https://thomas-rosenau.de/jousting-knights/#palette=white+red+lime+blue&army=giraffe+dromedary+camel&boardSize=6">Interactive version</a>
 
 </div><hr/>
 
-<div align="center"><img src="./gallery/antelope-wazir-dabbaba-dabbaba-16_000_000-scaled.png" width="250" height="250" alt="Yellow Antelope, Green Wazir, Pink &amp; Orange Dabbabas Pattern"><br>Yellow Antelope, Green Wazir, Pink &amp; Orange Dabbabas<br>
+<div align="center"><img src="./gallery/antelope-wazir-dabbaba-dabbaba-16_000_000-scaled.png" width="500" height="500" alt="Yellow Antelope, Green Wazir, Pink &amp; Orange Dabbabas Pattern"><br>Yellow Antelope, Green Wazir, Pink &amp; Orange Dabbabas<br>
 <a href="./gallery/antelope-wazir-dabbaba-dabbaba-16_000_000.png">Full image</a><br>
 <a href="https://thomas-rosenau.de/jousting-knights/#palette=white+yellow+green+pink+orange&army=antelope+wazir+dabbaba+dabbaba&boardSize=5">Interactive version</a>
 
 </div><hr/>
 
-<div align="center"><img src="./gallery/antelope-zebra-zebra-camel-250_000.png" width="250" height="250" alt="Red Antelope, Black &amp; Blue Zebras, Yellow Camel Pattern"><br>Red Antelope, Black &amp; Blue Zebras, Yellow Camel<br>
+<div align="center"><img src="./gallery/antelope-zebra-zebra-camel-250_000.png" width="500" height="500" alt="Red Antelope, Black &amp; Blue Zebras, Yellow Camel Pattern"><br>Red Antelope, Black &amp; Blue Zebras, Yellow Camel<br>
 <a href="./gallery/antelope-zebra-zebra-camel-250_000.png">Full image</a><br>
 <a href="https://thomas-rosenau.de/jousting-knights/#palette=white+red+black+blue+gold&army=antelope+zebra+zebra+camel">Interactive version</a>
 
 </div><hr/>
 
-<div align="center"><img src="./gallery/camel-zebra-stag-100_000_000-scaled.png" width="250" height="250" alt="Green Camel, Red Zebra, Black Stag Pattern"><br>Green Camel, Red Zebra, Black Stag<br>
+<div align="center"><img src="./gallery/camel-zebra-stag-100_000_000-scaled.png" width="500" height="500" alt="Green Camel, Red Zebra, Black Stag Pattern"><br>Green Camel, Red Zebra, Black Stag<br>
 <a href="./gallery/camel-zebra-stag-100_000_000.png">Full image</a><br>
 <a href="https://thomas-rosenau.de/jousting-knights/#palette=white+lime+red+black&army=camel+zebra+stag&boardSize=6">Interactive version</a>
 
 </div><hr/>
 
-<div align="center"><img src="./gallery/dromedary-alfil-knight-wazir-16_000_000-scaled.png" width="250" height="250" alt="Red Dromedary, Blue Alfil, Yellow Knight, Green Wazir Pattern"><br>Red Dromedary, Blue Alfil, Yellow Knight, Green Wazir<br>
-<a href="./gallery/dromedary-alfil-knight-wazir-16_000_000.png">Full image</a><br>
+<div align="center"><img src="./gallery/dromedary-alfil-knight-wazir-100_000_000-scaled.png" width="500" height="500" alt="Red Dromedary, Blue Alfil, Yellow Knight, Green Wazir Pattern"><br>Red Dromedary, Blue Alfil, Yellow Knight, Green Wazir<br><br>
+<img src="./gallery/dromedary-alfil-knight-wazir-100_000_000-cut.png" width="500" height="500" alt="Red Dromedary, Blue Alfil, Yellow Knight, Green Wazir Pattern Detail"><br>Detail<br><br>
+<a href="./gallery/dromedary-alfil-knight-wazir-100_000_000.png">Full image</a><br>
 <a href="https://thomas-rosenau.de/jousting-knights/#palette=white+red+blue+gold+lime+lime&army=dromedary+alfil+knight+wazir&boardSize=5">Interactive version</a>
 
 </div><hr/>
 
-<div align="center"><img src="./gallery/dromedary-dromedary-knight-antelope-alfil-16_000_000-scaled.png" width="250" height="250" alt="Red &amp; Blue Dromedaries, Yellow Knight, Green Antelope, Orange Alfil Pattern"><br>Red &amp; Blue Dromedaries, Yellow Knight, Green Antelope, Orange Alfil<br>
+<div align="center"><img src="./gallery/dromedary-dromedary-knight-antelope-alfil-16_000_000-scaled.png" width="500" height="500" alt="Red &amp; Blue Dromedaries, Yellow Knight, Green Antelope, Orange Alfil Pattern"><br>Red &amp; Blue Dromedaries, Yellow Knight, Green Antelope, Orange Alfil<br>
 <a href="./gallery/dromedary-dromedary-knight-antelope-alfil-16_000_000.png">Full image</a><br>
 <a href="https://thomas-rosenau.de/jousting-knights/#palette=white+red+blue+gold+green+orange&army=dromedary+dromedary+knight+antelope+alfil&boardSize=5">Interactive version</a>
 
 </div><hr/>
 
-<div align="center"><img src="./gallery/alfil-dromedary-dabbaba-100_000_000-scaled.png" width="250" height="250" alt="Red Alfil, Cyan Dromedary, Yellow Dabbaba Pattern"><br>Red Alfil, Cyan Dromedary, Yellow Dabbaba<br>
-<a href="./gallery/alfil-dromedary-dabbaba-100_000_000.png">Full image (⚠️️ 20MB file)</a><br>
+<div align="center"><img src="./gallery/alfil-dromedary-dabbaba-100_000_000-scaled.png" width="500" height="500" alt="Red Alfil, Cyan Dromedary, Yellow Dabbaba Pattern"><br>Red Alfil, Cyan Dromedary, Yellow Dabbaba<br><br>
+<img src="./gallery/alfil-dromedary-dabbaba-100_000_000-cut-scaled.png" width="500" height="500" alt="Red Alfil, Cyan Dromedary, Yellow Dabbaba Pattern Detail"><br>Detail<br><br>
+<a href="./gallery/alfil-dromedary-dabbaba-100_000_000.png">Full image (⚠️️ 21MB file)</a><br>
 <a href="https://thomas-rosenau.de/jousting-knights/#palette=black+red+cyan+yellow&army=alfil+dromedary+dabbaba">Interactive version</a>
 
 </div>
