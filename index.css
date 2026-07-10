@@ -112,30 +112,6 @@ button {
     vertical-align: top;
 }
 
-.tickmarks {
-    line-height: 0;
-    position: relative;
-    flex: 1;
-    width: 100%;
-    min-width: 100%;
-    max-width: 100%;
-    isolation: isolate;
-}
-
-.tickmarks::before {
-    display: block;
-    content: "";
-    z-index: -1;
-    position: absolute;
-    top: -.15em;
-    right: .6em;
-    left: .6em;
-    height: 1.5em;
-    pointer-events: none;
-    opacity: 0.4;
-    background: repeating-linear-gradient(to right, #0005 0 2px, transparent 2px calc((100% - 2px) / (var(--ticks) - 1)));
-}
-
 @media (max-width: 800px) {
     header, main {
         width: 100%;
