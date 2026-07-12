@@ -15,47 +15,30 @@
  *
  */
 
-export const spiralCoordinates = (number, originOffsetX = 0, originOffsetY = originOffsetX) => {
-  if (number === 0) {
-    return [originOffsetX, originOffsetY];
-  }
-
-  const ring = Math.ceil((Math.sqrt(number + 1) - 1) / 2);
-  const sideLength = ring * 2;
-  const maxValue = (2 * ring + 1) ** 2 - 1;
-  const offset = maxValue - number;
-
-  let x, y;
-
-  if (offset < sideLength) {
-    // bottom
-    x = ring - offset;
-    y = ring;
-  } else if (offset < 2 * sideLength) {
-    // left
-    x = -ring;
-    y = ring - (offset - sideLength);
-  } else if (offset < 3 * sideLength) {
-    // top
-    x = -ring + (offset - 2 * sideLength);
-    y = -ring;
-  } else {
-    // right
-    x = ring;
-    y = -ring + (offset - 3 * sideLength);
-  }
-
-  return [x + originOffsetX, y + originOffsetY];
-};
-
 export const spiralMap = boardSize => {
-  const offsetX = Math.floor((boardSize - 1)/ 2);
-  const offsetY = Math.floor(boardSize/ 2);
-  let squareCount = boardSize ** 2;
-  let x = new Uint16Array(squareCount);
-  let y = new Uint16Array(squareCount);
-  for (let i = 0; i < squareCount; i++) {
-    [x[i], y[i]] = spiralCoordinates(i, offsetX, offsetY);
+  let UintArray = boardSize < 2 ** 8 ? Uint8Array : Uint16Array;
+  const squareCount = boardSize ** 2;
+  let currentX = Math.floor((boardSize - 1) / 2);
+  let currentY = Math.floor((boardSize - 1) / 2);
+  const x = new UintArray(squareCount);
+  const y = new UintArray(squareCount);
+  let deltaX = 1;
+  let deltaY = 0;
+  let edgeLength = 1;
+  let straightDistance = 0;
+  for (let stepCount = 0; stepCount < squareCount; stepCount++) {
+    x[stepCount] = currentX;
+    y[stepCount] = currentY;
+    currentX += deltaX;
+    currentY += deltaY;
+    straightDistance++;
+    if (straightDistance === edgeLength) {
+      [deltaX, deltaY] = [deltaY, -deltaX];
+      straightDistance = 0;
+      if (deltaX) {
+        edgeLength++;
+      }
+    }
   }
   return [x, y];
 };
