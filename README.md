@@ -41,6 +41,11 @@ It's all static files, no build required. Just copy all files in the base folder
 <a href="https://thomas-rosenau.de/jousting-knights/#palette=white+red+black&army=knight+knight">Interactive version</a>
 </div><hr/>
 
+<div align="center"><img src="./gallery/giraffe-antelope-16_000_000-scaled.png" width="500" height="500" alt="Red Giraffe, Yellow Antelope Pattern"><br>Red Giraffe, Yellow Antelope<br>
+<a href="./gallery/giraffe-antelope-16_000_000.png">Full image</a><br>
+<a href="http://thomas-rosenau.de/jousting-knights/#palette=black+red+gold&army=giraffe+antelope">Interactive version</a>
+</div><hr/>
+
 <div align="center"><img src="./gallery/dabbaba-wazir-zebra-250_000.png" width="500" height="500" alt="Red Dabbaba, Yellow Wazir, Black Zebra Pattern"><br>Red Dabbaba, Yellow Wazir, Black Zebra<br>
 <a href="./gallery/dabbaba-wazir-zebra-250_000.png">Full image</a><br>
 <a href="https://thomas-rosenau.de/jousting-knights/#palette=white+red+gold+black&army=dabbaba+wazir+zebra">Interactive version</a>
@@ -71,7 +76,7 @@ It's all static files, no build required. Just copy all files in the base folder
 
 </div><hr/>
 
-<div align="center"><img src="./gallery/dromedary-alfil-knight-wazir-100_000_000-scaled.2.png" width="500" height="500" alt="Red Dromedary, Blue Alfil, Yellow Knight, Green Wazir Pattern"><br>Red Dromedary, Blue Alfil, Yellow Knight, Green Wazir<br><br>
+<div align="center"><img src="./gallery/dromedary-alfil-knight-wazir-100_000_000-scaled.png" width="500" height="500" alt="Red Dromedary, Blue Alfil, Yellow Knight, Green Wazir Pattern"><br>Red Dromedary, Blue Alfil, Yellow Knight, Green Wazir<br><br>
 <img src="./gallery/dromedary-alfil-knight-wazir-100_000_000-cut.png" width="500" height="500" alt="Red Dromedary, Blue Alfil, Yellow Knight, Green Wazir Pattern Detail"><br>Detail<br><br>
 <a href="./gallery/dromedary-alfil-knight-wazir-100_000_000.png">Full image</a><br>
 <a href="https://thomas-rosenau.de/jousting-knights/#palette=white+red+blue+gold+lime+lime&army=dromedary+alfil+knight+wazir&boardSize=5">Interactive version</a>
