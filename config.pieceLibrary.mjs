@@ -21,6 +21,7 @@ const pieceLibrary = {
   camel: [3, 1],
   dabbaba: [2, 0],
   dromedary: [3, 0],
+  eland: [5, 3],
   ferz: [1, 1],
   giraffe: [4, 1],
   knight: [2, 1],

@@ -54,6 +54,7 @@ let myArmies = [
   ['giraffe antelope', 'black red gold'],
   ['giraffe camel zebra camel antelope', 'white red orange blue green gold'],
   ['giraffe dromedary camel', 'white red lime blue'],
+  ['giraffe eland camel', 'white red gold black'],
   ['giraffe zebra dabbaba', 'black gold red cyan'],
   ['giraffe zebra dabbaba camel wazir', 'white red black blue cyan gold'],
   ['knight alfil dabbaba wazir', 'white red blue gold black'],
