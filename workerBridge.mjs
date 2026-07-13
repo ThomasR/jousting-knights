@@ -42,6 +42,7 @@ const initializeWorker = () => {
 
 export default function updateBoard({
   army,
+  enmities,
   desiredSquareCount,
   palette,
   paintRate
@@ -65,6 +66,7 @@ export default function updateBoard({
     canvas: offscreenCanvas,
     palette,
     army: army.map(pieceType => pieceLibrary[pieceType]),
+    enmities,
     desiredSquareCount,
     paintRate
   }], [offscreenCanvas]);

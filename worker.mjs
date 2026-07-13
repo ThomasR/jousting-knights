@@ -28,7 +28,7 @@ const cancel = () => {
 };
 
 const minWidth = 5;
-const draw = ({ canvas, palette, army, desiredSquareCount, paintRate }) => {
+const draw = ({ canvas, palette, army, desiredSquareCount, paintRate, enmities }) => {
 
   let boardSize = Math.ceil(desiredSquareCount ** .5);
   if (boardSize % 2 === 0) {
@@ -44,7 +44,8 @@ const draw = ({ canvas, palette, army, desiredSquareCount, paintRate }) => {
   const pixelDataGenerator = getPixelDataGenerator({
     boardWidth: boardSize,
     updateThreshold,
-    army
+    army,
+    enmities
   });
 
   incrementalDraw({

@@ -17,13 +17,15 @@
 
 import pieceLibrary from './config.pieceLibrary.mjs';
 
-import { randomButton, armyInput, paletteInput, triggerFormInput } from './htmlElements.mjs';
+import { randomButton, armyInput, paletteInput, triggerFormInput, enmitiesInput } from './htmlElements.mjs';
 
 import {minRandomArmySize, maxRandomArmySize, defaultPalette } from './config.mjs';
+import { getDefaultEmnities } from './coreLogic.mjs';
 
 const pieceTypes = Object.keys(pieceLibrary).filter(p => p !== 'elephant');
 
 const getRandomBetween = (a, b) => a + Math.floor(Math.random() * (1 + b - a));
+
 
 export default function () {
   randomButton.addEventListener('click', (e) => {
@@ -40,6 +42,7 @@ export default function () {
     if (currentPalette.trim().split(/[\s,]+/g).length <= armySize) {
       paletteInput.value = defaultPalette.split(' ').slice(0, armySize + 1).join(' ');
     }
+    enmitiesInput.value = getDefaultEmnities(armySize);
     triggerFormInput();
   });
 }

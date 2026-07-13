@@ -19,23 +19,23 @@ import { boardSizes, nnbsp } from './config.mjs';
 import updateBoard from './workerBridge.mjs';
 import { colors } from './config.mjs';
 
-import { armyInput, sizeInput, paletteInput, paintRateInput, boardSizeInfo, saveButton } from './htmlElements.mjs';
+import { armyInput, sizeInput, paletteInput, paintRateInput, boardSizeInfo, saveButton, enmitiesInput } from './htmlElements.mjs';
 import { updateUrl } from './url.mjs';
 import { updateTitle } from './page.mjs';
+import { getDefaultEmnities } from './coreLogic.mjs';
 
 let lastValid = null;
 
-export default function refresh(initial) {
+export default function refresh(event) {
   let desiredSquareCount = boardSizes[sizeInput.value] ?? boardSizes[0];
-
   boardSizeInfo.textContent = `${String(desiredSquareCount).replaceAll(/(.)(?=(?:.{3})+$)/g, `$1${nnbsp}`)}${nnbsp}px`;
 
   let isArmyValid = armyInput.checkValidity();
   if (!isArmyValid) {
-    if (initial) {
-      armyInput.value = armyInput.defaultValue;
-    } else {
+    if (event) {
       return;
+    } else {
+      armyInput.value = armyInput.defaultValue;
     }
   }
   let army = armyInput.value.toLowerCase().trim().split(/[\s,]+/g).filter(Boolean);
@@ -45,22 +45,36 @@ export default function refresh(initial) {
   let paletteLabel = paletteInput.closest('label');
   paletteLabel.dataset.invalidMessage = paletteLabel.dataset.invalidMessage.replace(/\d+/, requiredPaletteLength);
 
+  let requiredEnmitiesLength = army.length;
+  enmitiesInput.setAttribute('pattern', enmitiesInput.getAttribute('pattern').replaceAll(/\{\d+/g, `{${requiredEnmitiesLength}`));
+
   let isPaletteValid = paletteInput.checkValidity();
   if (!isPaletteValid) {
-    if (initial) {
-      paletteInput.value = paletteInput.defaultValue;
-    } else {
+    if (event) {
       return;
+    } else {
+      paletteInput.value = paletteInput.defaultValue;
     }
   }
   let palette = paletteInput.value.toLowerCase().trim().split(/[\s,]+/g).slice(0, requiredPaletteLength).map(color => colors[color]);
 
+  let isEmnitiesValid = enmitiesInput.checkValidity();
+  if (!isEmnitiesValid) {
+    if (event?.target === enmitiesInput) {
+      return;
+    } else {
+      enmitiesInput.value = getDefaultEmnities(requiredEnmitiesLength);
+    }
+  }
+
+  const enmities = enmitiesInput.value.trim().split(/\s+/g);
+
   let sizeStr = String(desiredSquareCount).replace(/000000$/, '_000000').replace(/000$/, '_000');
-  saveButton.dataset.filename = `${army.join('-')}-${sizeStr}.png`;
+  saveButton.dataset.filename = `${army.join('-')}-${enmities.join('-')}-${sizeStr}.png`;
 
   const paintRate = Number(paintRateInput.value);
 
-  let currentValid = `${desiredSquareCount}-${paintRate}-${army.join(',')}-${palette.flat()
+  let currentValid = `${desiredSquareCount}-${paintRate}-${enmities.join('')}-${army.join(',')}-${palette.flat()
     .join(',')}`;
   if (currentValid === lastValid) {
     // prevent refresh after user has only entered whitespace
@@ -74,7 +88,7 @@ export default function refresh(initial) {
 
   updateBoard({
     army,
-    paintRate,
+    enmities,
     desiredSquareCount,
     palette
   });

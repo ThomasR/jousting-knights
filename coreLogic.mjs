@@ -17,6 +17,17 @@
 
 import { spiralMap } from './spiral.mjs';
 
+
+export const getDefaultEmnities = armySize => {
+  if (armySize === 1) {
+    return '1';
+  }
+  let emnities = Array(armySize).fill(0).map((_, i) =>
+     `${Array(i).fill('1').join('')}0${Array(armySize - i - 1).fill('1').join('')}`
+  );
+  return emnities.join(' ');
+};
+
 const getMovementCatalog = army => army.map(movement => {
   const movementPatterns = [];
   for (let epsX of [1, -1]) {
@@ -30,15 +41,16 @@ const getMovementCatalog = army => army.map(movement => {
   return movementPatterns;
 });
 
-const getThreatMasks = army => ({
-  me: army.map((_, i) => 1 << i),
-  enemies: army.length === 1 ? [1] : army.map((_, i) => ((1 << army.length) - 1) ^ (1 << i))
+const getThreatMasks = (army, enmities) => ({
+  me: army.map((_, i) => 1 << (army.length - 1 - i)),
+  enemies: enmities.map(x => parseInt(x, 2)),
 });
 
 export const getPixelDataGenerator = ({
   boardWidth,
   updateThreshold,
-  army
+  army,
+  enmities
 }) => {
   const squareCount = boardWidth ** 2;
 
@@ -48,7 +60,7 @@ export const getPixelDataGenerator = ({
     throw new Error('Only up to 32 pieces allowed');
   }
 
-  const threatMasks = getThreatMasks(army);
+  const threatMasks = getThreatMasks(army, enmities);
   const movementPatternCatalog = getMovementCatalog(army);
 
   const [spiralX, spiralY] = spiralMap(boardWidth);

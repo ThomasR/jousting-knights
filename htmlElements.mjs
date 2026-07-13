@@ -19,6 +19,7 @@ export const form = document.querySelector('form#knightsForm');
 export const armyInput = form.querySelector('[name="army"]');
 export const paletteInput = form.querySelector('[name="palette"]');
 export const sizeInput = form.querySelector('[name="boardSize"]');
+export const enmitiesInput = form.querySelector('[name="enmities"]');
 export const paintRateInput = form.querySelector('[name="paintRate"]');
 export const boardSizeInfo = form.querySelector('#board-size-info');
 export const saveButton = document.querySelector('button#save');
@@ -27,6 +28,7 @@ export const slider = document.getElementById('boardSize');
 export const paletteInfo = document.getElementById('palette-info');
 export const armyInfo = document.getElementById('army-info');
 export const canvasContainer = document.querySelector('.canvas-container');
+export const enmitiesExplanation = document.getElementById('enmities-explanation');
 
 export const triggerFormInput = () => {
   const inputEvent = new Event('input');

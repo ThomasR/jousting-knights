@@ -50,6 +50,10 @@ label[data-invalid-message] {
     }
 }
 
+#enmities-explanation {
+    white-space: pre-wrap;
+}
+
 .canvas-container {
     position: fixed;
     top: 10px;
