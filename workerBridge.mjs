@@ -15,7 +15,7 @@
  *
  */
 
-import configPieceLibrary from './config.pieceLibrary.mjs';
+import pieceLibrary from './config.pieceLibrary.mjs';
 
 const url = new URL('./worker.mjs', import.meta.url);
 
@@ -64,7 +64,7 @@ export default function updateBoard({
   myWorker.postMessage(['draw', {
     canvas: offscreenCanvas,
     palette,
-    army: army.map(pieceType => configPieceLibrary[pieceType]),
+    army: army.map(pieceType => pieceLibrary[pieceType]),
     desiredSquareCount,
     paintRate
   }], [offscreenCanvas]);

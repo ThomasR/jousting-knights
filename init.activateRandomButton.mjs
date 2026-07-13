@@ -15,13 +15,13 @@
  *
  */
 
-import configPieceLibrary from './config.pieceLibrary.mjs';
+import pieceLibrary from './config.pieceLibrary.mjs';
 
 import { randomButton, armyInput, paletteInput, triggerFormInput } from './htmlElements.mjs';
 
 import {minRandomArmySize, maxRandomArmySize, defaultPalette } from './config.mjs';
 
-const pieceTypes = Object.keys(configPieceLibrary).filter(p => p !== 'elephant');
+const pieceTypes = Object.keys(pieceLibrary).filter(p => p !== 'elephant');
 
 const getRandomBetween = (a, b) => a + Math.floor(Math.random() * (1 + b - a));
 

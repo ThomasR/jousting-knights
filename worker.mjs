@@ -30,19 +30,19 @@ const cancel = () => {
 const minWidth = 5;
 const draw = ({ canvas, palette, army, desiredSquareCount, paintRate }) => {
 
-  let boardWidth = Math.ceil(desiredSquareCount ** .5);
-  if (boardWidth % 2 === 0) {
-    boardWidth++;
+  let boardSize = Math.ceil(desiredSquareCount ** .5);
+  if (boardSize % 2 === 0) {
+    boardSize++;
   }
-  boardWidth = Math.max(boardWidth, minWidth);
+  boardSize = Math.max(boardSize, minWidth);
 
-  canvas.width = boardWidth;
-  canvas.height = boardWidth;
+  canvas.width = boardSize;
+  canvas.height = boardSize;
 
-  let updateThreshold = ringsPerAnimationStep(boardWidth, paintRate);
+  let updateThreshold = ringsPerAnimationStep(boardSize, paintRate);
 
   const pixelDataGenerator = getPixelDataGenerator({
-    boardWidth,
+    boardWidth: boardSize,
     palette,
     updateThreshold,
     army

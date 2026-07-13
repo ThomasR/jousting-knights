@@ -15,7 +15,7 @@
  *
  */
 
-const configPieceLibrary = {
+const pieceLibrary = {
   alfil: [2, 2],
   antelope: [4, 3],
   camel: [3, 1],
@@ -28,6 +28,7 @@ const configPieceLibrary = {
   wazir: [1, 0],
   zebra: [3, 2]
 };
-configPieceLibrary.elephant = configPieceLibrary.alfil;
 
-export default configPieceLibrary;
+pieceLibrary.elephant = pieceLibrary.alfil;
+
+export default pieceLibrary;
