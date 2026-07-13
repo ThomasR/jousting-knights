@@ -26,6 +26,7 @@ export const randomButton = document.getElementById('randomize');
 export const slider = document.getElementById('boardSize');
 export const paletteInfo = document.getElementById('palette-info');
 export const armyInfo = document.getElementById('army-info');
+export const canvasContainer = document.querySelector('.canvas-container');
 
 export const triggerFormInput = () => {
   const inputEvent = new Event('input');

@@ -22,6 +22,7 @@ import activateSaveButton from './init.activateSaveButton.mjs';
 import activateRandomButton from './init.activateRandomButton.mjs';
 import updateSlider from './init.updateSlider.mjs';
 import './init.hotkeys.mjs';
+import './init.mouseWheelZoom.mjs';
 import { form } from './htmlElements.mjs';
 import { updateFormFromUrl } from './url.mjs';
 
