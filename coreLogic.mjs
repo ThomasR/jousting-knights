@@ -38,8 +38,7 @@ const getThreatMasks = army => ({
 export const getPixelDataGenerator = ({
   boardWidth,
   updateThreshold,
-  army,
-  palette
+  army
 }) => {
   const squareCount = boardWidth ** 2;
 
@@ -101,7 +100,7 @@ export const getPixelDataGenerator = ({
       }
 
       // process result
-      pixels.push([x, y, ...palette[pieceType + 1]]);
+      pixels.push([x, y, pieceType]);
       if (x - lastYield >= updateThreshold) {
         lastYield = x;
         yield pixels;

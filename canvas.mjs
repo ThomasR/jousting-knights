@@ -15,12 +15,15 @@
 *
 */
 
-export default function incrementalDraw({ canvas, pixelDataGenerator, backgroundColor, sharedState }) {
+export default function incrementalDraw({ canvas, pixelDataGenerator, palette, sharedState }) {
   const ctx = canvas.getContext('2d');
   const { width, height } = canvas;
 
+  const backgroundColor = palette.shift();
   ctx.fillStyle = `rgb(${backgroundColor.join(',')})`;
   ctx.fillRect(0, 0, width, height);
+
+  const paletteBytes = palette.map(([r, g, b]) => (255 << 24) | (b << 16) | (g << 8) | r);
 
   const imgData = ctx.getImageData(0, 0, width, height);
   const buf32 = new Uint32Array(imgData.data.buffer);
@@ -39,9 +42,8 @@ export default function incrementalDraw({ canvas, pixelDataGenerator, background
       return;
     }
     for (let pixelData of value) {
-      let [ x, y, r, g, b ] = pixelData;
-      const pixelIndex = y * width + x;
-      buf32[pixelIndex] = (255 << 24) | (b << 16) | (g << 8) | r;
+      let [ x, y, i ] = pixelData;
+      buf32[y * width + x] = paletteBytes[i];
     }
 
     ctx.putImageData(imgData, 0, 0);

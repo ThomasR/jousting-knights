@@ -43,7 +43,6 @@ const draw = ({ canvas, palette, army, desiredSquareCount, paintRate }) => {
 
   const pixelDataGenerator = getPixelDataGenerator({
     boardWidth: boardSize,
-    palette,
     updateThreshold,
     army
   });
@@ -51,7 +50,7 @@ const draw = ({ canvas, palette, army, desiredSquareCount, paintRate }) => {
   incrementalDraw({
     canvas,
     pixelDataGenerator,
-    backgroundColor: palette[0],
+    palette,
     sharedState
   });
 };
