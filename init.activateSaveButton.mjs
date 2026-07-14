@@ -21,9 +21,15 @@ export default function () {
   button.addEventListener('click', (e) => {
     e.preventDefault();
     const canvas = document.querySelector('canvas#output');
-    const link = document.createElement('a');
-    link.download = button.dataset.filename;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
+    canvas.toBlob((blob) => {
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.download = button.dataset.filename;
+      link.href = url;
+
+      link.click();
+      URL.revokeObjectURL(url);
+    }, 'image/png');
   });
 }
