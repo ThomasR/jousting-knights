@@ -89,6 +89,13 @@ It's all static files, no build required. Just copy all files in the base folder
 
 </div><hr/>
 
+<div align="center"><img src="./gallery/camel-giraffe-alfil-2_000_000.png" width="500" height="500" alt="Red Camel, Black Giraffe, Blue Alfil Pattern"><br>Red Camel, Black Giraffe, Blue Alfil<br><br>
+<img src="./gallery/camel-giraffe-alfil-2_000_000-cut.png" width="500" height="500" alt="Red Camel, Black Giraffe, Blue Alfil Pattern Detail"><br>Detail<br><br>
+<a href="./gallery/camel-giraffe-alfil-2_000_000.png">Full image</a><br>
+<a href="https://thomas-rosenau.de/jousting-knights/#palette=white+red+black+blue&army=camel+giraffe+alfil&boardSize=4">Interactive version</a>
+
+</div><hr/>
+
 <div align="center"><img src="./gallery/alfil-dromedary-dabbaba-100_000_000-scaled.png" width="500" height="500" alt="Red Alfil, Cyan Dromedary, Yellow Dabbaba Pattern"><br>Red Alfil, Cyan Dromedary, Yellow Dabbaba<br><br>
 <img src="./gallery/alfil-dromedary-dabbaba-100_000_000-cut-scaled.png" width="500" height="500" alt="Red Alfil, Cyan Dromedary, Yellow Dabbaba Pattern Detail"><br>Detail<br><br>
 <a href="./gallery/alfil-dromedary-dabbaba-100_000_000.png">Full image (⚠️️ 21MB file)</a><br>
