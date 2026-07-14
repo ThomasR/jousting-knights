@@ -16,14 +16,14 @@
  */
 
 import { armyInput, enmitiesExplanation, enmitiesInput, paletteInput } from './htmlElements.mjs';
-import { getDefaultEmnities } from './coreLogic.mjs';
+import { getDefaultEnmities } from './coreLogic.mjs';
 
 const getAttackedPieces = ({
   colors,
   army,
   index,
   enmities,
-  defaultEmnities
+  defaultEnmities
 }) => {
   let mask = enmities[index];
   if (/^0+$/.test(mask)) {
@@ -32,7 +32,7 @@ const getAttackedPieces = ({
   if (army.length >= 2 && /^1+$/.test(mask)) {
     return ['everything'];
   }
-  if (army.length > 2 && mask === defaultEmnities[index]) {
+  if (army.length > 2 && mask === defaultEnmities[index]) {
     return ['all other piece types'];
   }
   return mask.split('').reduce((list, bit, i) => {
@@ -48,9 +48,9 @@ const getTextContent = ({
   army,
   enmities
 }) => {
-  let defaultEmnities = getDefaultEmnities(army.length).split(' ');
+  let defaultEnmities = getDefaultEnmities(army.length).split(' ');
   let phrases = army.map((piece, index) => {
-    let attackedPieces = getAttackedPieces({ colors, army, index, enmities, defaultEmnities });
+    let attackedPieces = getAttackedPieces({ colors, army, index, enmities, defaultEnmities });
     let result = `${colors[index]} ${piece} attacks ${attackedPieces.join(', ').replace(/, ([^,]+)$/, ' and $1')}.`;
     return result.replaceAll(/([Gg])old/g, '$1olden');
   });

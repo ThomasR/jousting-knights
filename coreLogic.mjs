@@ -18,14 +18,14 @@
 import { spiralMap } from './spiral.mjs';
 import { paintThresholds } from './config.mjs';
 
-export const getDefaultEmnities = armySize => {
+export const getDefaultEnmities = armySize => {
   if (armySize === 1) {
     return '1';
   }
-  let emnities = Array(armySize).fill(0).map((_, i) =>
+  let enmities = Array(armySize).fill(0).map((_, i) =>
     `${Array(i).fill('1').join('')}0${Array(armySize - i - 1).fill('1').join('')}`
   );
-  return emnities.join(' ');
+  return enmities.join(' ');
 };
 
 const getMovementCatalog = army => army.map(movement => {

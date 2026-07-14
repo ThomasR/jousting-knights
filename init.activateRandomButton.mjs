@@ -22,7 +22,7 @@ import {
 } from './htmlElements.mjs';
 
 import { defaultPalette, maxRandomArmySize, minRandomArmySize } from './config.mjs';
-import { getDefaultEmnities } from './coreLogic.mjs';
+import { getDefaultEnmities } from './coreLogic.mjs';
 import refresh from './refresh.mjs';
 
 const pieceTypes = Object.keys(pieceLibrary).filter(p => p !== 'elephant');
@@ -45,7 +45,7 @@ export default function () {
     if (currentPalette.trim().split(/[\s,]+/g).length <= armySize) {
       paletteInput.value = defaultPalette.split(' ').slice(0, armySize + 1).join(' ');
     }
-    enmitiesInput.value = getDefaultEmnities(armySize);
+    enmitiesInput.value = getDefaultEnmities(armySize);
     triggerFormInput();
   });
 

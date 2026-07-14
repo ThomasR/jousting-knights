@@ -16,7 +16,7 @@
  */
 
 import { form } from './htmlElements.mjs';
-import { getDefaultEmnities } from './coreLogic.mjs';
+import { getDefaultEnmities } from './coreLogic.mjs';
 
 let normalize = str => str.replaceAll(/[\s,]+/g, ' ').trim();
 
@@ -26,9 +26,9 @@ export function updateUrl() {
   let army = normalize(params.get('army'));
   params.set('army', army);
   let armySize = army.split(' ').length;
-  let defaultEmnities = getDefaultEmnities(armySize);
+  let defaultEnmities = getDefaultEnmities(armySize);
   let enmities = normalize(params.get('enmities'));
-  if (enmities === defaultEmnities) {
+  if (enmities === defaultEnmities) {
     params.delete('enmities');
   } else {
     params.set('enmities', enmities);

@@ -17,7 +17,7 @@
 
 import sampleArmies from './config.sampleArmies.mjs';
 import { armyInput, enmitiesInput, form, paletteInput, triggerFormInput } from './htmlElements.mjs';
-import { getDefaultEmnities } from './coreLogic.mjs';
+import { getDefaultEnmities } from './coreLogic.mjs';
 
 export default function () {
   sampleArmies.forEach(sampleArmy => {
@@ -33,7 +33,7 @@ export default function () {
       button.dataset.palette = palette;
       if (!enmities) {
         let armySize = [...army.matchAll(/[\S]+/g)].length;
-        enmities = getDefaultEmnities(armySize);
+        enmities = getDefaultEnmities(armySize);
       }
       button.dataset.enmities = enmities;
       fieldset.appendChild(button);

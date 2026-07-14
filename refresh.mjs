@@ -21,7 +21,7 @@ import updateBoard from './workerBridge.mjs';
 import { armyInput, boardSizeInfo, enmitiesInput, paletteInput, saveButton, sizeInput } from './htmlElements.mjs';
 import { updateUrl } from './url.mjs';
 import { updateTitle } from './page.mjs';
-import { getDefaultEmnities } from './coreLogic.mjs';
+import { getDefaultEnmities } from './coreLogic.mjs';
 
 let lastValid = null;
 
@@ -59,9 +59,9 @@ export default function refresh(event) {
   let palette = paletteInput.value.toLowerCase().trim().split(/[\s,]+/g).slice(0, requiredPaletteLength)
     .map(color => colors[color]);
 
-  const defaultEnmities = getDefaultEmnities(requiredEnmitiesLength);
-  let isEmnitiesValid = enmitiesInput.checkValidity();
-  if (!isEmnitiesValid) {
+  const defaultEnmities = getDefaultEnmities(requiredEnmitiesLength);
+  let isEnmitiesValid = enmitiesInput.checkValidity();
+  if (!isEnmitiesValid) {
     if (event?.target === enmitiesInput) {
       return;
     } else {
