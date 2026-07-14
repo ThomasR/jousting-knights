@@ -53,6 +53,7 @@ let myArmies = [
   ['ferz stag alfil', 'white blue lime gold'],
   ['ferz wazir stag zebra camel', 'white red blue lime purple orange'],
   ['giraffe antelope', 'black red gold'],
+  ['giraffe camel alfil', 'white gold black blue', '010 001 110'],
   ['giraffe camel zebra camel antelope', 'white red orange blue green gold'],
   ['giraffe dromedary camel', 'white red lime blue'],
   ['giraffe eland camel', 'white red gold black', '011 001 100'],
