@@ -44,8 +44,7 @@ export default function updateBoard({
   army,
   enmities,
   desiredSquareCount,
-  palette,
-  paintRate
+  palette
 }) {
   let canvas = document.querySelector('canvas#output');
   if (myWorker) {
@@ -67,8 +66,7 @@ export default function updateBoard({
     palette,
     army: army.map(pieceType => pieceLibrary[pieceType]),
     enmities,
-    desiredSquareCount,
-    paintRate
+    desiredSquareCount
   }], [offscreenCanvas]);
 
 };

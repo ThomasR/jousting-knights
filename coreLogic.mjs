@@ -16,7 +16,7 @@
  */
 
 import { spiralMap } from './spiral.mjs';
-
+import {paintThresholds} from './config.mjs';
 
 export const getDefaultEmnities = armySize => {
   if (armySize === 1) {
@@ -48,7 +48,6 @@ const getThreatMasks = (army, enmities) => ({
 
 export const getPixelDataGenerator = ({
   boardWidth,
-  updateThreshold,
   army,
   enmities
 }) => {
@@ -74,7 +73,7 @@ export const getPixelDataGenerator = ({
     let threatened = new UintArray(squareCount);
     let x, y;
     let pixels = [];
-    let lastYield = 0;
+    let updateThreshold = squareCount > paintThresholds.minBoardSize ? paintThresholds.initialPaint : squareCount;
 
     outer: while (true) {
       pieceType = (pieceType + 1) % army.length;
@@ -113,8 +112,8 @@ export const getPixelDataGenerator = ({
 
       // process result
       pixels.push([x, y, pieceType]);
-      if (x - lastYield >= updateThreshold) {
-        lastYield = x;
+      if (pixels.length > updateThreshold) {
+        updateThreshold = paintThresholds.subsequentPaints;
         yield pixels;
         pixels = [];
       }

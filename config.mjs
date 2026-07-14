@@ -48,10 +48,10 @@ export const colors = {
   pink: [255, 137, 208]
 };
 
-export const ringsPerAnimationStep = (boardWidth, paintRate) => {
-  // values found to work experimentally
-  let exponent = (paintRate === 2) ? .63 : .5;
-  return Math.round(3 * 10 ** (-paintRate) * boardWidth ** exponent);
-};
-
 export const defaultPalette = 'white red blue gold green cyan black pink lime purple';
+
+export const paintThresholds = {
+  minBoardSize: 500_000,
+  initialPaint: 100_000,
+  subsequentPaints: 1_000_000
+};

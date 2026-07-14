@@ -20,7 +20,6 @@ export const armyInput = form.querySelector('[name="army"]');
 export const paletteInput = form.querySelector('[name="palette"]');
 export const sizeInput = form.querySelector('[name="boardSize"]');
 export const enmitiesInput = form.querySelector('[name="enmities"]');
-export const paintRateInput = form.querySelector('[name="paintRate"]');
 export const boardSizeInfo = form.querySelector('#board-size-info');
 export const saveButton = document.querySelector('button#save');
 export const randomButton = document.getElementById('randomize');

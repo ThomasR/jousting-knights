@@ -16,7 +16,6 @@
  */
 
 import incrementalDraw from './canvas.mjs';
-import { ringsPerAnimationStep } from './config.mjs';
 import { getPixelDataGenerator } from './coreLogic.mjs';
 
 const sharedState = {
@@ -28,7 +27,7 @@ const cancel = () => {
 };
 
 const minWidth = 5;
-const draw = ({ canvas, palette, army, desiredSquareCount, paintRate, enmities }) => {
+const draw = ({ canvas, palette, army, desiredSquareCount, enmities }) => {
 
   let boardSize = Math.ceil(desiredSquareCount ** .5);
   if (boardSize % 2 === 0) {
@@ -39,11 +38,9 @@ const draw = ({ canvas, palette, army, desiredSquareCount, paintRate, enmities }
   canvas.width = boardSize;
   canvas.height = boardSize;
 
-  let updateThreshold = ringsPerAnimationStep(boardSize, paintRate);
 
   const pixelDataGenerator = getPixelDataGenerator({
     boardWidth: boardSize,
-    updateThreshold,
     army,
     enmities
   });

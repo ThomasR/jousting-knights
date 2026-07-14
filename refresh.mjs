@@ -19,7 +19,7 @@ import { boardSizes, nnbsp } from './config.mjs';
 import updateBoard from './workerBridge.mjs';
 import { colors } from './config.mjs';
 
-import { armyInput, sizeInput, paletteInput, paintRateInput, boardSizeInfo, saveButton, enmitiesInput } from './htmlElements.mjs';
+import { armyInput, sizeInput, paletteInput, boardSizeInfo, saveButton, enmitiesInput } from './htmlElements.mjs';
 import { updateUrl } from './url.mjs';
 import { updateTitle } from './page.mjs';
 import { getDefaultEmnities } from './coreLogic.mjs';
@@ -72,10 +72,7 @@ export default function refresh(event) {
   let sizeStr = String(desiredSquareCount).replace(/000000$/, '_000000').replace(/000$/, '_000');
   saveButton.dataset.filename = `${army.join('-')}-${enmities.join('-')}-${sizeStr}.png`;
 
-  const paintRate = Number(paintRateInput.value);
-
-  let currentValid = `${desiredSquareCount}-${paintRate}-${enmities.join('')}-${army.join(',')}-${palette.flat()
-    .join(',')}`;
+  let currentValid = `${desiredSquareCount}-${enmities.join('')}-${army.join(',')}-${palette.flat().join(',')}`;
   if (currentValid === lastValid) {
     // prevent refresh after user has only entered whitespace
     return;
