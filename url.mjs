@@ -16,13 +16,23 @@
  */
 
 import { form } from './htmlElements.mjs';
+import { getDefaultEmnities } from './coreLogic.mjs';
 
 let normalize = str => str.replaceAll(/[\s,]+/g, ' ').trim();
 
 export function updateUrl() {
   let params = new URLSearchParams(new FormData(form));
-  params.set('army', normalize(params.get('army')));
   params.set('palette', normalize(params.get('palette')));
+  let army = normalize(params.get('army'));
+  params.set('army', army);
+  let armySize = army.split(' ').length;
+  let defaultEmnities = getDefaultEmnities(armySize);
+  let enmities = normalize(params.get('enmities'));
+  if (enmities === defaultEmnities) {
+    params.delete('enmities');
+  } else {
+    params.set('enmities', enmities);
+  }
   history.replaceState(null, '', `#${params}`);
 }
 

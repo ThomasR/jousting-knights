@@ -35,5 +35,11 @@ activateRandomButton();
 updateFormFromUrl();
 setupEnmitiesExplanation();
 
+window.addEventListener('hashchange', () => {
+  updateFormFromUrl();
+  refresh();
+});
+
 form.addEventListener('input', refresh);
+
 refresh();
