@@ -29,13 +29,11 @@ const getAttackedPieces = ({
   if (/^0+$/.test(mask)) {
     return ['nothing'];
   }
-  if (army.length > 2) {
-    if (/^1+$/.test(mask)) {
-      return ['everything'];
-    }
-    if (mask === defaultEmnities[index]) {
-      return ['all other piece types'];
-    }
+  if (army.length >= 2 && /^1+$/.test(mask)) {
+    return ['everything'];
+  }
+  if (army.length > 2 && mask === defaultEmnities[index]) {
+    return ['all other piece types'];
   }
   return mask.split('').reduce((list, bit, i) => {
     if (Number(bit)) {

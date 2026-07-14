@@ -17,10 +17,13 @@
 
 import pieceLibrary from './config.pieceLibrary.mjs';
 
-import { armyInput, enmitiesInput, paletteInput, randomButton, triggerFormInput } from './htmlElements.mjs';
+import {
+  armyInput, enmitiesInput, paletteInput, randomArmyButton, randomEnmitiesButton, triggerFormInput
+} from './htmlElements.mjs';
 
 import { defaultPalette, maxRandomArmySize, minRandomArmySize } from './config.mjs';
 import { getDefaultEmnities } from './coreLogic.mjs';
+import refresh from './refresh.mjs';
 
 const pieceTypes = Object.keys(pieceLibrary).filter(p => p !== 'elephant');
 
@@ -28,7 +31,7 @@ const getRandomBetween = (a, b) => a + Math.floor(Math.random() * (1 + b - a));
 
 
 export default function () {
-  randomButton.addEventListener('click', (e) => {
+  randomArmyButton.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
     let armySize = getRandomBetween(minRandomArmySize, maxRandomArmySize);
@@ -45,4 +48,25 @@ export default function () {
     enmitiesInput.value = getDefaultEmnities(armySize);
     triggerFormInput();
   });
+
+  randomEnmitiesButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    let armySize = armyInput.value.trim().split(/[, ]+/).length;
+    let lastValue = enmitiesInput.value.trim().replaceAll(/[, ]/g, ' ');
+    let nextValue;
+    do {
+      let randomEnmities = Array(armySize).fill(0).map(() => {
+        let randomized = Array(armySize).fill(0).map(() => Math.round(Math.random()));
+        return randomized.join('');
+      });
+      nextValue = randomEnmities.join(' ');
+    } while (nextValue === lastValue);
+    enmitiesInput.value = nextValue;
+    refresh();
+  });
+
+  setInterval(() => {
+    randomEnmitiesButton.disabled = !armyInput.checkValidity();
+  }, 500);
 }

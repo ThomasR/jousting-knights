@@ -53,6 +53,7 @@ label[data-invalid-message] {
 }
 
 #enmities-explanation {
+    margin-top: -1em;
     white-space: pre-wrap;
 }
 
