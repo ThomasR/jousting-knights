@@ -53,7 +53,8 @@ const getTextContent = ({
   let defaultEmnities = getDefaultEmnities(army.length).split(' ');
   let phrases = army.map((piece, index) => {
     let attackedPieces = getAttackedPieces({colors, army, index, enmities, defaultEmnities});
-    return `${colors[index]} ${piece} attacks ${attackedPieces.join(', ').replace(/, ([^,]+)$/, ' and $1')}.`;
+    let result = `${colors[index]} ${piece} attacks ${attackedPieces.join(', ').replace(/, ([^,]+)$/, ' and $1')}.`;
+    return result.replaceAll(/([Gg])old/g, '$1olden');
   });
   phrases = phrases.map(phrase => phrase[0].toUpperCase() + phrase.slice(1));
   return phrases.join('\n');
