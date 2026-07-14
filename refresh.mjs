@@ -58,19 +58,24 @@ export default function refresh(event) {
   }
   let palette = paletteInput.value.toLowerCase().trim().split(/[\s,]+/g).slice(0, requiredPaletteLength).map(color => colors[color]);
 
+  const defaultEnmities = getDefaultEmnities(requiredEnmitiesLength);
   let isEmnitiesValid = enmitiesInput.checkValidity();
   if (!isEmnitiesValid) {
     if (event?.target === enmitiesInput) {
       return;
     } else {
-      enmitiesInput.value = getDefaultEmnities(requiredEnmitiesLength);
+      enmitiesInput.value = defaultEnmities;
     }
   }
 
   const enmities = enmitiesInput.value.trim().split(/\s+/g);
 
   let sizeStr = String(desiredSquareCount).replace(/000000$/, '_000000').replace(/000$/, '_000');
-  saveButton.dataset.filename = `${army.join('-')}-${enmities.join('-')}-${sizeStr}.png`;
+  if (enmities.join(' ') === defaultEnmities) {
+    saveButton.dataset.filename = `${army.join('-')}-${sizeStr}.png`;
+  } else {
+    saveButton.dataset.filename = `${army.join('-')}-${enmities.join('-')}-${sizeStr}.png`;
+  }
 
   let currentValid = `${desiredSquareCount}-${enmities.join('')}-${army.join(',')}-${palette.flat().join(',')}`;
   if (currentValid === lastValid) {
