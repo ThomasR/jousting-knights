@@ -14,7 +14,7 @@ The pattern generation rule in a nutshell:
 
 This produces incredible patterns, especially when using multiple piece types. See the _Gallery_ below for examples.
 
-In addition to the piece types presented in the videos, this app also features _camels_, _giraffes_, and _stags_.
+In addition to the piece types presented in the videos, this app also features _camels_, _giraffes_, _stags_, and _elands_.
 
 ## Try it out now
 
