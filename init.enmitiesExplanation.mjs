@@ -15,7 +15,7 @@
  *
  */
 
-import { armyInput, enmitiesInput, paletteInput, enmitiesExplanation } from './htmlElements.mjs';
+import { armyInput, enmitiesExplanation, enmitiesInput, paletteInput } from './htmlElements.mjs';
 import { getDefaultEmnities } from './coreLogic.mjs';
 
 const getAttackedPieces = ({
@@ -39,7 +39,7 @@ const getAttackedPieces = ({
   }
   return mask.split('').reduce((list, bit, i) => {
     if (Number(bit)) {
-      list.push(`${colors[i]} ${army[i]}`)
+      list.push(`${colors[i]} ${army[i]}`);
     }
     return list;
   }, []);
@@ -52,7 +52,7 @@ const getTextContent = ({
 }) => {
   let defaultEmnities = getDefaultEmnities(army.length).split(' ');
   let phrases = army.map((piece, index) => {
-    let attackedPieces = getAttackedPieces({colors, army, index, enmities, defaultEmnities});
+    let attackedPieces = getAttackedPieces({ colors, army, index, enmities, defaultEmnities });
     let result = `${colors[index]} ${piece} attacks ${attackedPieces.join(', ').replace(/, ([^,]+)$/, ' and $1')}.`;
     return result.replaceAll(/([Gg])old/g, '$1olden');
   });

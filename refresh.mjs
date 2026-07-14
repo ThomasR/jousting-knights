@@ -15,11 +15,10 @@
 *
 */
 
-import { boardSizes, nnbsp } from './config.mjs';
+import { boardSizes, colors, nnbsp } from './config.mjs';
 import updateBoard from './workerBridge.mjs';
-import { colors } from './config.mjs';
 
-import { armyInput, sizeInput, paletteInput, boardSizeInfo, saveButton, enmitiesInput } from './htmlElements.mjs';
+import { armyInput, boardSizeInfo, enmitiesInput, paletteInput, saveButton, sizeInput } from './htmlElements.mjs';
 import { updateUrl } from './url.mjs';
 import { updateTitle } from './page.mjs';
 import { getDefaultEmnities } from './coreLogic.mjs';
@@ -46,7 +45,8 @@ export default function refresh(event) {
   paletteLabel.dataset.invalidMessage = paletteLabel.dataset.invalidMessage.replace(/\d+/, requiredPaletteLength);
 
   let requiredEnmitiesLength = army.length;
-  enmitiesInput.setAttribute('pattern', enmitiesInput.getAttribute('pattern').replaceAll(/\{\d+/g, `{${requiredEnmitiesLength}`));
+  enmitiesInput.setAttribute('pattern', enmitiesInput.getAttribute('pattern')
+    .replaceAll(/\{\d+/g, `{${requiredEnmitiesLength}`));
 
   let isPaletteValid = paletteInput.checkValidity();
   if (!isPaletteValid) {
@@ -56,7 +56,8 @@ export default function refresh(event) {
       paletteInput.value = paletteInput.defaultValue;
     }
   }
-  let palette = paletteInput.value.toLowerCase().trim().split(/[\s,]+/g).slice(0, requiredPaletteLength).map(color => colors[color]);
+  let palette = paletteInput.value.toLowerCase().trim().split(/[\s,]+/g).slice(0, requiredPaletteLength)
+    .map(color => colors[color]);
 
   const defaultEnmities = getDefaultEmnities(requiredEnmitiesLength);
   let isEmnitiesValid = enmitiesInput.checkValidity();

@@ -18,6 +18,7 @@
 import { form } from './htmlElements.mjs';
 
 let normalize = str => str.replaceAll(/[\s,]+/g, ' ').trim();
+
 export function updateUrl() {
   let params = new URLSearchParams(new FormData(form));
   params.set('army', normalize(params.get('army')));

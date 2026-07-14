@@ -42,7 +42,7 @@ export default function incrementalDraw({ canvas, pixelDataGenerator, palette, s
       return;
     }
     for (let pixelData of value) {
-      let [ x, y, i ] = pixelData;
+      let [x, y, i] = pixelData;
       buf32[y * width + x] = paletteBytes[i];
     }
 

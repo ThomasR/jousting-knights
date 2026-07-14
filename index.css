@@ -28,13 +28,15 @@ header, main {
 }
 
 label:has(small) {
-    flex-direction: column;
     align-items: stretch !important;
+    flex-direction: column;
 }
+
 label[data-invalid-message] {
     &:not(:last-child) {
         margin-bottom: -.75em !important;
     }
+
     &::after {
         content: attr(data-invalid-message);
         font-size: max(80%, 13px) !important;
@@ -116,27 +118,29 @@ button {
     vertical-align: top;
 }
 
-@media (aspect-ratio < 3/4) {
+@media (aspect-ratio < 3 / 4) {
     header, main {
         width: 100%;
     }
+
     header {
         padding-top: 100vw;
     }
+
     h1 {
         margin-top: 0;
     }
 
     .canvas-container {
         position: fixed;
-        max-width: 100%;
-        width: 100%;
-        max-height: unset;
-        height: auto;
-        margin: 0;
         top: 0;
-        left: 0;
         right: unset;
         bottom: unset;
+        left: 0;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: unset;
+        margin: 0;
     }
 }

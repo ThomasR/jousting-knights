@@ -16,14 +16,14 @@
  */
 
 import { spiralMap } from './spiral.mjs';
-import {paintThresholds} from './config.mjs';
+import { paintThresholds } from './config.mjs';
 
 export const getDefaultEmnities = armySize => {
   if (armySize === 1) {
     return '1';
   }
   let emnities = Array(armySize).fill(0).map((_, i) =>
-     `${Array(i).fill('1').join('')}0${Array(armySize - i - 1).fill('1').join('')}`
+    `${Array(i).fill('1').join('')}0${Array(armySize - i - 1).fill('1').join('')}`
   );
   return emnities.join(' ');
 };
@@ -43,7 +43,7 @@ const getMovementCatalog = army => army.map(movement => {
 
 const getThreatMasks = (army, enmities) => ({
   me: army.map((_, i) => 1 << (army.length - 1 - i)),
-  enemies: enmities.map(x => parseInt(x, 2)),
+  enemies: enmities.map(x => parseInt(x, 2))
 });
 
 export const getPixelDataGenerator = ({

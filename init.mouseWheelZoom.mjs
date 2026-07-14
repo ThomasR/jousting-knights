@@ -24,7 +24,7 @@ canvasContainer.addEventListener('wheel', (event) => {
   event.preventDefault();
   let canvas = canvasContainer.querySelector('canvas');
   let currentZoomLevel = Number(canvas.dataset.zoomLevel || minZoom);
-  let delta = Math.sign(- event.deltaY);
+  let delta = Math.sign(-event.deltaY);
   let nextZoomLevel = currentZoomLevel + delta;
   const maxZoom = Math.floor(Math.log2(canvas.width / minVisiblePixels));
   if (minZoom > nextZoomLevel || nextZoomLevel > maxZoom) {

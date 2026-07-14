@@ -3,13 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Jousting Knights</title>
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐴</text></svg>">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="/shared/css/base.css" onerror="this.onerror=null; this.href='https://thomas-rosenau.de' + this.getAttribute('href');">
-  <link rel="stylesheet" href="/shared/css/form.css" onerror="this.onerror=null; this.href='https://thomas-rosenau.de' + this.getAttribute('href');">
-  <link rel="stylesheet" href="./index.css">
-  <script src="./index.mjs" type="module" defer></script>
+  <link
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐴</text></svg>"
+    rel="icon">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+  <link href="/shared/css/base.css"
+    onerror="this.onerror=null; this.href='https://thomas-rosenau.de' + this.getAttribute('href');"
+    rel="stylesheet">
+  <link href="/shared/css/form.css"
+    onerror="this.onerror=null; this.href='https://thomas-rosenau.de' + this.getAttribute('href');"
+    rel="stylesheet">
+  <link href="./index.css" rel="stylesheet">
+  <script defer src="./index.mjs" type="module"></script>
 </head>
 
 <body>
@@ -27,24 +32,25 @@
     <form id="knightsForm">
       <label>
         <span>Board size: <span id="board-size-info"></span></span>
-        <span class="tickmarks" style="--ticks: 2"><input type="range" id="boardSize" name="boardSize" min="0" max="1"
+        <span class="tickmarks" style="--ticks: 2"><input id="boardSize" max="1" min="0" name="boardSize" type="range"
           value="1"></span>
-        <small>Large board sizes may lead to high memory consumption and long calculation times. Press Escape to interrupt.</small>
+        <small>Large board sizes may lead to high memory consumption and long calculation times. Press Escape to
+               interrupt.</small>
       </label>
       <label data-invalid-message="Please pick 2 from the list">
         <span>Color palette</span>
-        <input type="text" id="palette" name="palette" value="white black red" required>
+        <input id="palette" name="palette" required type="text" value="white black red">
         <small id="palette-info"></small> <small>The first value is for empty squares.</small>
       </label>
       <label data-invalid-message="Please pick from the list.">
         <span>Army</span>
-        <input type="text" id="army" name="army" value="knight knight" required>
+        <input id="army" name="army" required type="text" value="knight knight">
         <small id="army-info"></small>
       </label>
       <button id="randomize">🎲&#x202F;Random Army!</button>
       <label>
         <span>Enmities</span>
-        <input type="text" id="enmities" name="enmities" value="01 10" pattern=" *([01]{2}\b *){2,} *" required>
+        <input id="enmities" name="enmities" pattern=" *([01]{2}\b *){2,} *" required type="text" value="01 10">
         <small id="enmities-explanation"></small>
       </label>
     </form>

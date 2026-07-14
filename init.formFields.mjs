@@ -17,10 +17,10 @@
 
 import { colors } from './config.mjs';
 import pieceLibrary from './config.pieceLibrary.mjs';
-import { armyInfo, paletteInfo, armyInput, paletteInput } from './htmlElements.mjs';
+import { armyInfo, armyInput, paletteInfo, paletteInput } from './htmlElements.mjs';
 
 export default function initFormFields() {
-  let pieceTypes = Object.keys(pieceLibrary)
+  let pieceTypes = Object.keys(pieceLibrary);
   armyInput.setAttribute('pattern', ` *((${pieceTypes.join('|')})\\b[ ,]*)+`);
   pieceTypes = pieceTypes.filter(p => p !== 'elephant').map(p => (p === 'alfil') ? 'alfil/elephant' : p);
   armyInfo.textContent = `Available pieces: ${pieceTypes.join(', ')}.`;

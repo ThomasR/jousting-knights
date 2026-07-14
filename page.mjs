@@ -18,7 +18,7 @@
 
 import { titleTemplate } from './config.mjs';
 
-const pluralize = w => w.endsWith('z') ? `${w}es` : w.endsWith('y') ? w.replace(/y$/, 'ies'): `${w}s`;
+const pluralize = w => w.endsWith('z') ? `${w}es` : w.endsWith('y') ? w.replace(/y$/, 'ies') : `${w}s`;
 
 export const updateTitle = (army) => {
   let armyFormatted = army.map(pieceName => pieceName[0].toUpperCase() + pieceName.substring(1));

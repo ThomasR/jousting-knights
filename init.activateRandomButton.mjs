@@ -17,9 +17,9 @@
 
 import pieceLibrary from './config.pieceLibrary.mjs';
 
-import { randomButton, armyInput, paletteInput, triggerFormInput, enmitiesInput } from './htmlElements.mjs';
+import { armyInput, enmitiesInput, paletteInput, randomButton, triggerFormInput } from './htmlElements.mjs';
 
-import {minRandomArmySize, maxRandomArmySize, defaultPalette } from './config.mjs';
+import { defaultPalette, maxRandomArmySize, minRandomArmySize } from './config.mjs';
 import { getDefaultEmnities } from './coreLogic.mjs';
 
 const pieceTypes = Object.keys(pieceLibrary).filter(p => p !== 'elephant');

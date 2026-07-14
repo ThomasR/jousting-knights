@@ -16,7 +16,7 @@
  */
 
 import sampleArmies from './config.sampleArmies.mjs';
-import { form, paletteInput, armyInput, triggerFormInput, enmitiesInput } from './htmlElements.mjs';
+import { armyInput, enmitiesInput, form, paletteInput, triggerFormInput } from './htmlElements.mjs';
 import { getDefaultEmnities } from './coreLogic.mjs';
 
 export default function () {
@@ -46,5 +46,5 @@ export default function () {
         triggerFormInput();
       });
     });
-  })
+  });
 };

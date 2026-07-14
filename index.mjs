@@ -15,7 +15,7 @@
  *
  */
 
-import initFormFields from "./init.formFields.mjs"
+import initFormFields from './init.formFields.mjs';
 import addSamples from './init.addSamples.mjs';
 import refresh from './refresh.mjs';
 import activateSaveButton from './init.activateSaveButton.mjs';
