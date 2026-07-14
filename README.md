@@ -117,6 +117,10 @@ It's all static files, no build required. Just copy all files in the base folder
 
 </div>
 
+## Related Projects
+
+Similar app, with more features, but offline: [Sopel97/ulam-leapers](https://github.com/Sopel97/ulam-leapers)
+
 ## License
 
 [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
