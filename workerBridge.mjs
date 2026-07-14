@@ -31,6 +31,10 @@ const onMessage = ({ data: [payload, callbackId] }) => {
   }
 };
 
+const onError = (e) => {
+  console.error('Worker error caught in main thread:', e);
+};
+
 const initializeWorker = () => {
   myWorker = new Worker(url, {
     type: 'module'
@@ -38,6 +42,7 @@ const initializeWorker = () => {
   callbacks = {};
   idCounter = 0;
   myWorker.onmessage = onMessage;
+  myWorker.onerror = onError;
 };
 
 export default function updateBoard({
