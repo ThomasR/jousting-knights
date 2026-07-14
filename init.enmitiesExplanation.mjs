@@ -80,5 +80,5 @@ export default function () {
       army,
       colors
     });
-  }, 200);
+  }, 500);
 }
