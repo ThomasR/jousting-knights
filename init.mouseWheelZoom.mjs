@@ -20,8 +20,15 @@ import { canvasContainer } from './htmlElements.mjs';
 const minZoom = 0;
 const minVisiblePixels = 9;
 
+let lastHandled = 0;
+
 canvasContainer.addEventListener('wheel', (event) => {
   event.preventDefault();
+  let now = Date.now();
+  if (now - lastHandled < 150) {
+    return;
+  }
+  lastHandled = now;
   let canvas = canvasContainer.querySelector('canvas');
   let currentZoomLevel = Number(canvas.dataset.zoomLevel || minZoom);
   let delta = Math.sign(-event.deltaY);
