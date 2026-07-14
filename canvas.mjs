@@ -15,20 +15,24 @@
 *
 */
 
-export default function incrementalDraw({ canvas, pixelDataGenerator, palette, sharedState }) {
+export default function incrementalDraw({ canvas, pixelPainter, palette, sharedState }) {
+  console.time('🎨 Painting background');
   const ctx = canvas.getContext('2d');
   const { width, height } = canvas;
 
   const backgroundColor = palette.shift();
   ctx.fillStyle = `rgb(${backgroundColor.join(',')})`;
   ctx.fillRect(0, 0, width, height);
+  console.timeEnd('🎨 Painting background');
 
-  const paletteBytes = palette.map(([r, g, b]) => (255 << 24) | (b << 16) | (g << 8) | r);
-
+  console.time('⚙️ Initializing canvas');
   const imgData = ctx.getImageData(0, 0, width, height);
-  const buf32 = new Uint32Array(imgData.data.buffer);
-  const gen = pixelDataGenerator();
+  const pixels = new Uint32Array(imgData.data.buffer);
+  console.timeEnd('⚙️ Initializing canvas');
+
+  const gen = pixelPainter({ pixels, ctx, imgData });
   const logMsg = `[canvas] 🖌️ ${width}×${height} board`;
+
 
   function renderNextBatch() {
     if (sharedState.cancelled) {
@@ -41,12 +45,6 @@ export default function incrementalDraw({ canvas, pixelDataGenerator, palette, s
       console.timeEnd(logMsg);
       return;
     }
-    for (let pixelData of value) {
-      let [x, y, i] = pixelData;
-      buf32[y * width + x] = paletteBytes[i];
-    }
-
-    ctx.putImageData(imgData, 0, 0);
     requestAnimationFrame(renderNextBatch);
   }
 

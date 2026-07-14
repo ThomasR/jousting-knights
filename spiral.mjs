@@ -16,6 +16,7 @@
  */
 
 export const spiralMap = boardSize => {
+  console.time('꩜ Computing coordinates');
   let UintArray = boardSize < 2 ** 8 ? Uint8Array : Uint16Array;
   const squareCount = boardSize ** 2;
   let currentX = Math.floor((boardSize - 1) / 2);
@@ -40,5 +41,6 @@ export const spiralMap = boardSize => {
       }
     }
   }
+  console.timeEnd('꩜ Computing coordinates');
   return [x, y];
 };

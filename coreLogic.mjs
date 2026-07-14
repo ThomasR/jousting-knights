@@ -46,10 +46,11 @@ const getThreatMasks = (army, enmities) => ({
   enemies: enmities.map(x => parseInt(x, 2))
 });
 
-export const getPixelDataGenerator = ({
+export const getPixelPainter = ({
   boardWidth,
   army,
-  enmities
+  enmities,
+  palette
 }) => {
   const squareCount = boardWidth ** 2;
 
@@ -63,17 +64,17 @@ export const getPixelDataGenerator = ({
   const movementPatternCatalog = getMovementCatalog(army);
 
   const [spiralX, spiralY] = spiralMap(boardWidth);
+  const paletteBytes = palette.map(([r, g, b]) => (255 << 24) | (b << 16) | (g << 8) | r);
 
-  return function* pixelDataGenerator() {
+  return function* pixelPainter({ pixels, ctx, imgData }) {
+    const occupied = new Uint8Array(squareCount);
+    const threatened = new UintArray(squareCount);
     let done = new Set();
     let lastPieceIndex = Array(army.length).fill(-1);
-    let occupied = new Uint8Array(squareCount);
     let pieceType = -1;
-    // note: works only for up to 8 pieces
-    let threatened = new UintArray(squareCount);
     let x, y;
-    let pixels = [];
     let updateThreshold = squareCount > paintThresholds.minBoardSize ? paintThresholds.initialPaint : squareCount;
+    let paintedCount = 0;
 
     outer: while (true) {
       pieceType = (pieceType + 1) % army.length;
@@ -111,14 +112,17 @@ export const getPixelDataGenerator = ({
       }
 
       // process result
-      pixels.push([x, y, pieceType]);
-      if (pixels.length > updateThreshold) {
+      pixels[x * boardWidth + y] = paletteBytes[pieceType + 1];
+      paintedCount++;
+      if (paintedCount > updateThreshold) {
         updateThreshold = paintThresholds.subsequentPaints;
-        yield pixels;
-        pixels = [];
+        ctx.putImageData(imgData, 0, 0);
+        paintedCount = 0;
+        yield true;
       }
-
     }
-    yield pixels;
+
+    ctx.putImageData(imgData, 0, 0);
+    yield true;
   };
 };

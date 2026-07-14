@@ -16,7 +16,7 @@
  */
 
 import incrementalDraw from './canvas.mjs';
-import { getPixelDataGenerator } from './coreLogic.mjs';
+import { getPixelPainter } from './coreLogic.mjs';
 
 const sharedState = {
   cancelled: false
@@ -38,16 +38,16 @@ const draw = ({ canvas, palette, army, desiredSquareCount, enmities }) => {
   canvas.width = boardSize;
   canvas.height = boardSize;
 
-
-  const pixelDataGenerator = getPixelDataGenerator({
+  const pixelPainter = getPixelPainter({
     boardWidth: boardSize,
     army,
-    enmities
+    enmities,
+    palette
   });
 
   incrementalDraw({
     canvas,
-    pixelDataGenerator,
+    pixelPainter,
     palette,
     sharedState
   });
