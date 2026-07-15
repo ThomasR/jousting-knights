@@ -15,7 +15,7 @@
 *
 */
 
-export default function incrementalDraw({ canvas, pixelPainter, palette, sharedState }) {
+export default function incrementalDraw({ canvas, pixelPainter, palette, sharedState, callback }) {
   console.time('[🎨canvas] ⚙️ Initializing canvas');
   const ctx = canvas.getContext('2d');
   const { width, height } = canvas;
@@ -43,11 +43,13 @@ export default function incrementalDraw({ canvas, pixelPainter, palette, sharedS
     if (sharedState.cancelled) {
       sharedState.cancelled = false;
       console.timeEnd(logMsg);
+      callback(false);
       return;
     }
     let { value } = gen.next();
     if (!value) {
       console.timeEnd(logMsg);
+      callback(true);
       return;
     }
     totalPainted += value;

@@ -27,7 +27,17 @@ const cancel = () => {
 };
 
 const minWidth = 5;
-const draw = ({ canvas, palette, army, desiredSquareCount, enmities }) => {
+
+function message([callbackArgs, callbackId]) {
+  console.debug('[🧵worker] 📤', callbackId, ...callbackArgs);
+  self.postMessage([callbackArgs, callbackId]);
+}
+
+function callback({ callbackId, args }) {
+  message([args, callbackId]);
+}
+
+const draw = ({ canvas, palette, army, desiredSquareCount, enmities, callbackId }) => {
 
   let boardSize = Math.ceil(desiredSquareCount ** .5);
   if (boardSize % 2 === 0) {
@@ -49,7 +59,10 @@ const draw = ({ canvas, palette, army, desiredSquareCount, enmities }) => {
     canvas,
     pixelPainter,
     palette,
-    sharedState
+    sharedState,
+    callback: (finished) => {
+      callback({ args: [finished], callbackId });
+    }
   });
 };
 

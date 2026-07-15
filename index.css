@@ -70,6 +70,16 @@ label[data-invalid-message] {
     box-shadow: 0 0 10px gray;
     aspect-ratio: 1 / 1;
 
+    &.loading::before {
+        content: "⏳";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1rem;
+        pointer-events: none;
+    }
+
     &:hover::before,
     &:hover::after {
         display: block;

@@ -18,7 +18,7 @@
 import { boardSizes, colors, nnbsp } from './config.mjs';
 import updateBoard from './workerBridge.mjs';
 
-import { armyInput, boardSizeInfo, enmitiesInput, paletteInput, saveButton, sizeInput } from './htmlElements.mjs';
+import { armyInput, boardSizeInfo, canvasContainer,enmitiesInput, paletteInput, saveButton, sizeInput } from './htmlElements.mjs';
 import { updateUrl } from './url.mjs';
 import { updateTitle } from './page.mjs';
 import { getDefaultEnmities } from './coreLogic.mjs';
@@ -89,10 +89,14 @@ export default function refresh(event) {
 
   updateTitle(army);
 
+  canvasContainer.classList.add('loading');
   updateBoard({
     army,
     enmities,
     desiredSquareCount,
-    palette
+    palette,
+    callback: (e) => {
+      canvasContainer.classList.remove('loading');
+    }
   });
 };

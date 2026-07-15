@@ -49,13 +49,18 @@ export default function updateBoard({
   army,
   enmities,
   desiredSquareCount,
-  palette
+  palette,
+  callback
 }) {
   let canvas = document.querySelector('canvas#output');
   if (myWorker) {
     cancel();
   }
   initializeWorker();
+
+  let callbackId = `callbackId:${idCounter}`;
+  idCounter++;
+  callbacks[callbackId] = callback;
 
   try {
     offscreenCanvas = canvas.transferControlToOffscreen();
@@ -71,7 +76,8 @@ export default function updateBoard({
     palette,
     army: army.map(pieceType => pieceLibrary[pieceType]),
     enmities,
-    desiredSquareCount
+    desiredSquareCount,
+    callbackId
   }], [offscreenCanvas]);
 
 };
