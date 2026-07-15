@@ -14,7 +14,7 @@
     onerror="this.onerror=null; this.href='https://thomas-rosenau.de' + this.getAttribute('href');"
     rel="stylesheet">
   <link href="./index.css" rel="stylesheet">
-  <script defer src="./index.mjs" type="module"></script>
+  <script async src="./index.mjs" type="module"></script>
 </head>
 
 <body>
@@ -32,8 +32,8 @@
     <form id="knightsForm" onsubmit="return false">
       <label>
         <span>Board size: <span id="board-size-info"></span></span>
-        <span class="tickmarks" style="--ticks: 2"><input id="boardSize" max="1" min="0" name="boardSize" type="range"
-          value="1"></span>
+        <span class="tickmarks"><input id="boardSize" max="1" min="0" name="boardSize" type="range"
+          value="0"></span>
         <small>Large board sizes may lead to high memory consumption and long calculation times. Press Escape to
                interrupt.</small>
       </label>
