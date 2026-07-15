@@ -67,16 +67,17 @@ label[data-invalid-message] {
     height: calc(100vh - 2 * 10px);
     max-height: calc(50vw - 2 * 10px);
     margin: auto 0;
-    box-shadow: 0 0 10px gray;
+    background: var(--form-background-color);
+    box-shadow: 0 0 5px #ccc;
     aspect-ratio: 1 / 1;
 
     &.loading::before {
         content: "⏳";
+        font-size: 1rem;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-size: 1rem;
         pointer-events: none;
     }
 
@@ -88,6 +89,7 @@ label[data-invalid-message] {
         position: absolute;
         background: black;
         box-shadow: 0 0 0 1px hsl(none 0% 100% / 0.75);
+        transform: none;
     }
 
     &:hover::before {
