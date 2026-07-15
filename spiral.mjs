@@ -36,15 +36,15 @@ export const spiralMap = boardSize => {
     currentY += deltaY;
     remainingToCorner--;
     if (remainingToCorner === 0) {
-      remainingToCorner = edgeLength;
       if (deltaX === 0) {
-        deltaX = -deltaY;
+        deltaX = deltaY;
         deltaY = 0;
         edgeLength++;
       } else {
-        deltaY = deltaX;
+        deltaY = -deltaX;
         deltaX = 0;
       }
+      remainingToCorner = edgeLength;
     }
   }
   console.timeEnd(logMsg);
