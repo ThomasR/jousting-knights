@@ -112,7 +112,7 @@ export const getPixelPainter = ({
       }
 
       // process result
-      pixels[x * boardWidth + y] = paletteBytes[pieceType + 1];
+      pixels[y * boardWidth + x] = paletteBytes[pieceType + 1];
       paintedCount++;
       if (paintedCount > updateThreshold) {
         updateThreshold = paintThresholds.subsequentPaints;
