@@ -87,9 +87,9 @@ label[data-invalid-message] {
         content: "";
         z-index: 1;
         position: absolute;
+        transform: none;
         background: black;
         box-shadow: 0 0 0 1px hsl(none 0% 100% / 0.75);
-        transform: none;
     }
 
     &:hover::before {

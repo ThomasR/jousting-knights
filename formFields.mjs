@@ -16,7 +16,7 @@
 */
 
 import ArrayField from './ArrayField.mjs';
-import { armyInput,enmitiesInput, paletteInput } from './htmlElements.mjs';
+import { armyInput, enmitiesInput, paletteInput } from './htmlElements.mjs';
 
 export const armyField = new ArrayField({ htmlElement: armyInput });
 export const paletteField = new ArrayField({ htmlElement: paletteInput });

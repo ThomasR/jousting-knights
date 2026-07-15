@@ -30,10 +30,6 @@ export default class ArrayField {
     this.#label = htmlElement.closest('label');
   }
 
-  #normalize(value) {
-    return value.replaceAll(/[, ]+/g, ' ').trim();
-  }
-
   get stringValue() {
     let raw = this.#htmlElement.value;
     return this.#normalize(raw);
@@ -49,10 +45,6 @@ export default class ArrayField {
 
   set value(value) {
     this.#htmlElement.value = value.join(' ');
-  }
-
-  checkValidity() {
-    return this.#htmlElement.checkValidity();
   }
 
   set minLength(minLength) {
@@ -74,6 +66,14 @@ export default class ArrayField {
   set itemPattern(itemPattern) {
     this.#itemPattern = itemPattern;
     this.#updatePattern(!itemPattern);
+  }
+
+  #normalize(value) {
+    return value.replaceAll(/[, ]+/g, ' ').trim();
+  }
+
+  checkValidity() {
+    return this.#htmlElement.checkValidity();
   }
 
   #updatePattern(force = false) {
