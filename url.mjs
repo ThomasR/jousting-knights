@@ -26,7 +26,7 @@ export function updateUrl() {
   let army = normalize(params.get('army'));
   params.set('army', army);
   let armySize = army.split(' ').length;
-  let defaultEnmities = getDefaultEnmities(armySize);
+  let defaultEnmities = getDefaultEnmities(armySize).join(' ');
   let enmities = normalize(params.get('enmities'));
   if (enmities === defaultEnmities) {
     params.delete('enmities');

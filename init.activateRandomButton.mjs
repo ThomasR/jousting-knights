@@ -16,11 +16,8 @@
  */
 
 import pieceLibrary from './config.pieceLibrary.mjs';
-
-import {
-  armyInput, enmitiesInput, paletteInput, randomArmyButton, randomEnmitiesButton, triggerFormInput
-} from './htmlElements.mjs';
-
+import { randomArmyButton, randomEnmitiesButton, triggerFormInput } from './htmlElements.mjs';
+import { armyField, enmitiesField, paletteField } from './formFields.mjs';
 import { defaultPalette, maxRandomArmySize, minRandomArmySize } from './config.mjs';
 import { getDefaultEnmities } from './coreLogic.mjs';
 import refresh from './refresh.mjs';
@@ -28,7 +25,6 @@ import refresh from './refresh.mjs';
 const pieceTypes = Object.keys(pieceLibrary).filter(p => p !== 'elephant');
 
 const getRandomBetween = (a, b) => a + Math.floor(Math.random() * (1 + b - a));
-
 
 export default function () {
   randomArmyButton.addEventListener('click', (e) => {
@@ -39,33 +35,30 @@ export default function () {
       let pieceIndex = getRandomBetween(0, pieceTypes.length - 1);
       return pieceTypes[pieceIndex];
     });
-    army = army.join(' ');
-    armyInput.value = army;
-    let currentPalette = paletteInput.value;
-    if (currentPalette.trim().split(/[\s,]+/g).length <= armySize) {
-      paletteInput.value = defaultPalette.split(' ').slice(0, armySize + 1).join(' ');
+    armyField.value = army;
+    if (paletteField.value.length <= armySize) {
+      paletteField.value = defaultPalette.split(' ').slice(0, armySize + 1);
     }
-    enmitiesInput.value = getDefaultEnmities(armySize);
+    enmitiesField.value = getDefaultEnmities(armySize);
     triggerFormInput();
   });
 
   randomEnmitiesButton.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    let armySize = armyInput.value.trim().split(/[, ]+/).length;
-    let lastValue = enmitiesInput.value.trim().replaceAll(/[, ]/g, ' ');
+    let armySize = armyField.value.length;
+    let lastValue = enmitiesField.stringValue;
     let nextValue;
     do {
-      let randomEnmities = Array(armySize).fill(0).map(() => {
+      nextValue = Array(armySize).fill(0).map(() => {
         return getRandomBetween(1, 2 ** armySize - 1).toString(2).padStart(armySize, '0');
       });
-      nextValue = randomEnmities.join(' ');
-    } while (nextValue === lastValue);
-    enmitiesInput.value = nextValue;
+    } while (nextValue.join(' ') === lastValue);
+    enmitiesField.value = nextValue;
     refresh();
   });
 
   setInterval(() => {
-    randomEnmitiesButton.disabled = !armyInput.checkValidity() || armyInput.value.trim().split(/[, ]+/).length === 1;
+    randomEnmitiesButton.disabled = !armyField.checkValidity() || armyField.value.length === 1;
   }, 500);
 }

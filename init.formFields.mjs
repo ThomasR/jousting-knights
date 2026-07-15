@@ -17,13 +17,19 @@
 
 import { colors } from './config.mjs';
 import pieceLibrary from './config.pieceLibrary.mjs';
-import { armyInfo, armyInput, paletteInfo, paletteInput } from './htmlElements.mjs';
+import { armyInfo, paletteInfo } from './htmlElements.mjs';
+import { armyField, enmitiesField, paletteField } from './formFields.mjs';
 
 export default function initFormFields() {
   let pieceTypes = Object.keys(pieceLibrary);
-  armyInput.setAttribute('pattern', ` *((${pieceTypes.join('|')})\\b[ ,]*)+`);
+  armyField.itemPattern = pieceTypes.join('|');
+  armyField.minLength = 1;
   pieceTypes = pieceTypes.filter(p => p !== 'elephant').map(p => (p === 'alfil') ? 'alfil/elephant' : p);
   armyInfo.textContent = `Available pieces: ${pieceTypes.join(', ')}.`;
   paletteInfo.textContent = `Available colors: ${Object.keys(colors).join(', ')}.`;
-  paletteInput.setAttribute('pattern', ` *((${Object.keys(colors).join('|')})\\b[ ,]*){2,}`);
+  paletteField.itemPattern = Object.keys(colors).join('|');
+  paletteField.minLength = 2;
+  enmitiesField.itemPattern = `[01]{${armyField.value.length}}`;
+  enmitiesField.minLength = armyField.value.length;
+  enmitiesField.maxLength = armyField.value.length;
 }

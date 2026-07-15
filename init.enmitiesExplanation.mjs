@@ -15,7 +15,8 @@
  *
  */
 
-import { armyInput, enmitiesExplanation, enmitiesInput, paletteInput } from './htmlElements.mjs';
+import { enmitiesExplanation } from './htmlElements.mjs';
+import { armyField, enmitiesField, paletteField } from './formFields.mjs';
 import { getDefaultEnmities } from './coreLogic.mjs';
 
 const getAttackedPieces = ({
@@ -48,11 +49,11 @@ const getTextContent = ({
   army,
   enmities
 }) => {
-  let defaultEnmities = getDefaultEnmities(army.length).split(' ');
+  let defaultEnmities = getDefaultEnmities(army.length);
   let phrases = army.map((piece, index) => {
     let attackedPieces = getAttackedPieces({ colors, army, index, enmities, defaultEnmities });
     let result = `${colors[index]} ${piece} attacks ${attackedPieces.join(', ').replace(/, ([^,]+)$/, ' and $1')}.`;
-    return result.replaceAll(/([Gg])old/g, '$1olden');
+    return result.replaceAll(/([Gg])old\b/g, '$1olden');
   });
   phrases = phrases.map(phrase => phrase[0].toUpperCase() + phrase.slice(1));
   return phrases.join('\n');
@@ -61,12 +62,12 @@ const getTextContent = ({
 export default function () {
   let lastFingerprint;
   setInterval(() => {
-    if (!enmitiesInput.checkValidity() || !armyInput.checkValidity() || !paletteInput.checkValidity()) {
+    if (!enmitiesField.checkValidity() || !armyField.checkValidity() || !paletteField.checkValidity()) {
       return;
     }
-    let enmities = enmitiesInput.value.trim().split(/[\s,]+/);
-    let army = armyInput.value.trim().split(/[\s,]+/);
-    let colors = paletteInput.value.trim().split(/[\s,]+/);
+    let enmities = enmitiesField.value;
+    let army = armyField.value;
+    let colors = paletteField.value;
     colors.shift();
     let fingerprint = JSON.stringify([enmities, colors, army]);
     if (fingerprint === lastFingerprint) {

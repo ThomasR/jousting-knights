@@ -18,7 +18,8 @@
 import { boardSizes, colors, nnbsp } from './config.mjs';
 import updateBoard from './workerBridge.mjs';
 
-import { armyInput, boardSizeInfo, canvasContainer,enmitiesInput, paletteInput, saveButton, sizeInput } from './htmlElements.mjs';
+import { boardSizeInfo, canvasContainer, enmitiesInput, saveButton, sizeInput } from './htmlElements.mjs';
+import { armyField, enmitiesField, paletteField } from './formFields.mjs';
 import { updateUrl } from './url.mjs';
 import { updateTitle } from './page.mjs';
 import { getDefaultEnmities } from './coreLogic.mjs';
@@ -29,50 +30,48 @@ export default function refresh(event) {
   let desiredSquareCount = boardSizes[sizeInput.value] ?? boardSizes[0];
   boardSizeInfo.textContent = `${String(desiredSquareCount).replaceAll(/(.)(?=(?:.{3})+$)/g, `$1${nnbsp}`)}${nnbsp}px`;
 
-  let isArmyValid = armyInput.checkValidity();
+  let isArmyValid = armyField.checkValidity();
   if (!isArmyValid) {
     if (event) {
       return;
     } else {
-      armyInput.value = armyInput.defaultValue;
+      armyField.reset();
     }
   }
-  let army = armyInput.value.toLowerCase().trim().split(/[\s,]+/g).filter(Boolean);
+  let army = armyField.value;
 
   let requiredPaletteLength = army.length + 1;
-  paletteInput.setAttribute('pattern', paletteInput.getAttribute('pattern').replace(/\d+/, requiredPaletteLength));
-  let paletteLabel = paletteInput.closest('label');
-  paletteLabel.dataset.invalidMessage = paletteLabel.dataset.invalidMessage.replace(/\d+/, requiredPaletteLength);
+  paletteField.minLength = requiredPaletteLength;
 
   let requiredEnmitiesLength = army.length;
-  enmitiesInput.setAttribute('pattern', enmitiesInput.getAttribute('pattern')
-    .replaceAll(/\{\d+/g, `{${requiredEnmitiesLength}`));
+  enmitiesField.itemPattern = `[01]{${requiredEnmitiesLength}}`;
+  enmitiesField.minLength = requiredEnmitiesLength;
+  enmitiesField.maxLength = requiredEnmitiesLength;
 
-  let isPaletteValid = paletteInput.checkValidity();
+  let isPaletteValid = paletteField.checkValidity();
   if (!isPaletteValid) {
     if (event) {
       return;
     } else {
-      paletteInput.value = paletteInput.defaultValue;
+      paletteField.reset();
     }
   }
-  let palette = paletteInput.value.toLowerCase().trim().split(/[\s,]+/g).slice(0, requiredPaletteLength)
-    .map(color => colors[color]);
+  let palette = paletteField.value.slice(0, requiredPaletteLength).map(color => colors[color]);
 
   const defaultEnmities = getDefaultEnmities(requiredEnmitiesLength);
-  let isEnmitiesValid = enmitiesInput.checkValidity();
+  let isEnmitiesValid = enmitiesField.checkValidity();
   if (!isEnmitiesValid) {
     if (event?.target === enmitiesInput) {
       return;
     } else {
-      enmitiesInput.value = defaultEnmities;
+      enmitiesField.value = defaultEnmities;
     }
   }
 
-  const enmities = enmitiesInput.value.trim().split(/\s+/g);
+  const enmities = enmitiesField.value;
 
   let sizeStr = String(desiredSquareCount).replace(/000000$/, '_000000').replace(/000$/, '_000');
-  if (enmities.join(' ') === defaultEnmities) {
+  if (enmities.join(' ') === defaultEnmities.join(' ')) {
     saveButton.dataset.filename = `${army.join('-')}-${sizeStr}.png`;
   } else {
     saveButton.dataset.filename = `${army.join('-')}-${enmities.join('-')}-${sizeStr}.png`;
