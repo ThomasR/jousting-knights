@@ -15,8 +15,10 @@
  *
  */
 
+const logMsg = '[꩜spiral] 🧮 Computing coordinates';
+
 export const spiralMap = boardSize => {
-  console.time('꩜ Computing coordinates');
+  console.time(logMsg);
   let UintArray = boardSize < 2 ** 8 ? Uint8Array : Uint16Array;
   const squareCount = boardSize ** 2;
   let currentX = Math.floor((boardSize - 1) / 2);
@@ -34,13 +36,15 @@ export const spiralMap = boardSize => {
     currentY += deltaY;
     straightDistance++;
     if (straightDistance === edgeLength) {
-      [deltaX, deltaY] = [deltaY, -deltaX];
+      const temp = deltaX;
+      deltaX = deltaY;
+      deltaY = -temp;
       straightDistance = 0;
       if (deltaX) {
         edgeLength++;
       }
     }
   }
-  console.timeEnd('꩜ Computing coordinates');
+  console.timeEnd(logMsg);
   return [x, y];
 };
