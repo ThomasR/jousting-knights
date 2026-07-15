@@ -59,7 +59,7 @@ const callableMethods = {
 };
 
 self.onmessage = ({ data }) => {
-  console.debug('[worker] 📥 ', ...data);
+  console.debug('[🧵worker] 📥 ', ...data);
   const [method, ...args] = data;
   if (!Object.hasOwn(callableMethods, method)) {
     throw new Error(`unknown method "${method}"`);

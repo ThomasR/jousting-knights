@@ -16,25 +16,30 @@
 */
 
 export default function incrementalDraw({ canvas, pixelPainter, palette, sharedState }) {
-  console.time('🎨 Painting background');
+  console.time('[🎨canvas] ⚙️ Initializing canvas');
   const ctx = canvas.getContext('2d');
   const { width, height } = canvas;
-
   const backgroundColor = palette.shift();
+  const imgData = ctx.createImageData(width, height);
+  const pixels = new Uint32Array(imgData.data.buffer);
+  const bgBytes = (255 << 24) | (backgroundColor[2] << 16) | (backgroundColor[1] << 8) | backgroundColor[0];
+  pixels.fill(bgBytes);
+  console.timeEnd('[🎨canvas] ⚙️ Initializing canvas');
+
+  console.time('[🎨canvas] ⬜️ Filling background');
   ctx.fillStyle = `rgb(${backgroundColor.join(',')})`;
   ctx.fillRect(0, 0, width, height);
-  console.timeEnd('🎨 Painting background');
+  console.timeEnd('[🎨canvas] ⬜️ Filling background');
 
-  console.time('⚙️ Initializing canvas');
-  const imgData = ctx.getImageData(0, 0, width, height);
-  const pixels = new Uint32Array(imgData.data.buffer);
-  console.timeEnd('⚙️ Initializing canvas');
-
+  console.time('[🎨canvas] ⚙️ Initializing painter');
   const gen = pixelPainter({ pixels, ctx, imgData });
-  const logMsg = `[canvas] 🖌️ ${width}×${height} board`;
+  console.timeEnd('[🎨canvas] ⚙️ Initializing painter');
 
+  const logMsg = `[🎨canvas] 🖌️ ${width}×${height} board`;
+  console.time(logMsg);
 
-  function renderNextBatch() {
+  let totalPainted = 0;
+  const renderNextBatch = () => {
     if (sharedState.cancelled) {
       sharedState.cancelled = false;
       console.timeEnd(logMsg);
@@ -45,9 +50,11 @@ export default function incrementalDraw({ canvas, pixelPainter, palette, sharedS
       console.timeEnd(logMsg);
       return;
     }
+    totalPainted += value;
+    const percentage = (Math.round(1000 * totalPainted / (width * height)) / 10).toFixed(1);
+    console.timeLog(logMsg, `${percentage}%`);
     requestAnimationFrame(renderNextBatch);
-  }
+  };
 
-  console.time(logMsg);
   requestAnimationFrame(renderNextBatch);
 }
