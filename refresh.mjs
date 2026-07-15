@@ -40,23 +40,10 @@ export default function refresh(event) {
   }
   let army = armyField.value;
 
-  let requiredPaletteLength = army.length + 1;
-  paletteField.minLength = requiredPaletteLength;
-
   let requiredEnmitiesLength = army.length;
   enmitiesField.itemPattern = `[01]{${requiredEnmitiesLength}}`;
   enmitiesField.minLength = requiredEnmitiesLength;
   enmitiesField.maxLength = requiredEnmitiesLength;
-
-  let isPaletteValid = paletteField.checkValidity();
-  if (!isPaletteValid) {
-    if (event) {
-      return;
-    } else {
-      paletteField.reset();
-    }
-  }
-  let palette = paletteField.value.slice(0, requiredPaletteLength).map(color => colors[color]);
 
   const defaultEnmities = getDefaultEnmities(requiredEnmitiesLength);
   let isEnmitiesValid = enmitiesField.checkValidity();
@@ -67,6 +54,19 @@ export default function refresh(event) {
       enmitiesField.value = defaultEnmities;
     }
   }
+
+  let requiredPaletteLength = army.length + 1;
+  paletteField.minLength = requiredPaletteLength;
+
+  let isPaletteValid = paletteField.checkValidity();
+  if (!isPaletteValid) {
+    if (event) {
+      return;
+    } else {
+      paletteField.reset();
+    }
+  }
+  let palette = paletteField.value.slice(0, requiredPaletteLength).map(color => colors[color]);
 
   const enmities = enmitiesField.value;
 
