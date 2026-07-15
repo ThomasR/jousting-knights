@@ -53,5 +53,5 @@ export const defaultPalette = 'white red blue gold green cyan black pink lime pu
 export const paintThresholds = {
   minBoardSize: 500_000,
   initialPaint: 100_000,
-  subsequentPaints: 1_000_000
+  maxPaint: 10_000_000
 };

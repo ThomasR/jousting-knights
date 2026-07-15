@@ -115,14 +115,14 @@ export const getPixelPainter = ({
       pixels[y * boardWidth + x] = paletteBytes[pieceType + 1];
       paintedCount++;
       if (paintedCount > updateThreshold) {
-        updateThreshold = paintThresholds.subsequentPaints;
         ctx.putImageData(imgData, 0, 0);
+        yield paintedCount;
         paintedCount = 0;
-        yield true;
+        updateThreshold = Math.min(2 * updateThreshold, paintThresholds.maxPaint);
       }
     }
 
     ctx.putImageData(imgData, 0, 0);
-    yield true;
+    yield paintedCount;
   };
 };
