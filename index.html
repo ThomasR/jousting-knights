@@ -29,7 +29,7 @@
        pattern, respectively.</p>
   </header>
   <main>
-    <form id="knightsForm">
+    <form id="knightsForm" onsubmit="return false">
       <label>
         <span>Board size: <span id="board-size-info"></span></span>
         <span class="tickmarks" style="--ticks: 2"><input id="boardSize" max="1" min="0" name="boardSize" type="range"
@@ -47,16 +47,16 @@
         <input id="army" name="army" required type="text" value="knight knight">
         <small id="army-info"></small>
       </label>
-      <button id="randomize-army">🎲&#x202F;Random Army!</button>
+      <button type="button" id="randomize-army">🎲&#x202F;Random Army!</button>
       <label>
         <span>Enmities</span>
         <input id="enmities" name="enmities" pattern=" *([01]{2}\b *){2,} *" required type="text" value="01 10">
       </label>
       <small id="enmities-explanation"></small>
-      <button id="randomize-enmities">🎲&#x202F;Random Enmities!</button>
+      <button type="button" id="randomize-enmities">🎲&#x202F;Random Enmities!</button>
     </form>
     <form>
-      <button id="save">💾&#x202F;Save as PNG</button>
+      <button type="button" id="save">💾&#x202F;Save as PNG</button>
     </form>
     <div class="canvas-container">
       <canvas id="output"></canvas>

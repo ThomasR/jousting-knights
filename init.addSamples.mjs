@@ -28,6 +28,7 @@ export default function () {
     fieldset.appendChild(legend);
     sampleArmy.values.forEach(([army, palette, enmities]) => {
       let button = document.createElement('button');
+      button.type = 'button';
       button.textContent = army;
       button.dataset.army = army;
       button.dataset.palette = palette;
