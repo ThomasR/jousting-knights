@@ -61,7 +61,7 @@ const getTextContent = ({
 
 export default function () {
   let lastFingerprint;
-  setInterval(() => {
+  let update = () => {
     if (!enmitiesField.checkValidity() || !armyField.checkValidity() || !paletteField.checkValidity()) {
       return;
     }
@@ -79,5 +79,8 @@ export default function () {
       army,
       colors
     });
-  }, 500);
+    enmitiesExplanation.style.setProperty('--line-count', enmities.length);
+  };
+  update();
+  setInterval(update, 500);
 }

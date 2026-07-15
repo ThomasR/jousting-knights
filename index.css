@@ -53,8 +53,14 @@ label[data-invalid-message] {
 }
 
 #enmities-explanation {
+    --line-count: 1;
     margin-top: -1em;
     white-space: pre-wrap;
+    height: calc(var(--line-count) * 1.25em);
+    transition: height .5s ease-in-out;
+    overflow: hidden;
+    padding-bottom: .75em;
+    margin-bottom: -.75em;
 }
 
 .canvas-container {
