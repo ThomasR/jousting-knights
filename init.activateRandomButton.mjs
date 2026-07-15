@@ -66,6 +66,6 @@ export default function () {
   });
 
   setInterval(() => {
-    randomEnmitiesButton.disabled = !armyInput.checkValidity();
+    randomEnmitiesButton.disabled = !armyInput.checkValidity() || armyInput.value.trim().split(/[, ]+/).length === 1;
   }, 500);
 }
