@@ -57,7 +57,7 @@ export default function () {
     let nextValue;
     do {
       let randomEnmities = Array(armySize).fill(0).map(() => {
-        return Math.floor(Math.random() * (1 << armySize - 1) + 1).toString(2).padStart(armySize, '0');
+        return getRandomBetween(1, 2 ** armySize - 1).toString(2).padStart(armySize, '0');
       });
       nextValue = randomEnmities.join(' ');
     } while (nextValue === lastValue);
