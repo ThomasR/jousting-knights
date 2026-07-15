@@ -29,7 +29,7 @@ const cancel = () => {
 const minWidth = 5;
 
 function message([callbackArgs, callbackId]) {
-  console.debug('[🧵worker] 📤', callbackId, ...callbackArgs);
+  console.debug('[🧵worker] 📡️', callbackId, ...callbackArgs);
   self.postMessage([callbackArgs, callbackId]);
 }
 
@@ -72,7 +72,7 @@ const callableMethods = {
 };
 
 self.onmessage = ({ data }) => {
-  console.debug('[🧵worker] 📥 ', ...data);
+  console.debug('[🧵worker] 📩 ', ...data);
   const [method, ...args] = data;
   if (!Object.hasOwn(callableMethods, method)) {
     throw new Error(`unknown method "${method}"`);
