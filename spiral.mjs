@@ -28,20 +28,22 @@ export const spiralMap = boardSize => {
   let deltaX = 1;
   let deltaY = 0;
   let edgeLength = 1;
-  let straightDistance = 0;
+  let remainingToCorner = edgeLength;
   for (let stepCount = 0; stepCount < squareCount; stepCount++) {
     x[stepCount] = currentX;
     y[stepCount] = currentY;
     currentX += deltaX;
     currentY += deltaY;
-    straightDistance++;
-    if (straightDistance === edgeLength) {
-      const temp = deltaX;
-      deltaX = deltaY;
-      deltaY = -temp;
-      straightDistance = 0;
-      if (deltaX) {
+    remainingToCorner--;
+    if (remainingToCorner === 0) {
+      remainingToCorner = edgeLength;
+      if (deltaX === 0) {
+        deltaX = -deltaY;
+        deltaY = 0;
         edgeLength++;
+      } else {
+        deltaY = deltaX;
+        deltaX = 0;
       }
     }
   }
