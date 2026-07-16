@@ -63,6 +63,7 @@ let myArmies = [
   ['giraffe zebra dabbaba', 'black gold red cyan'],
   ['giraffe zebra dabbaba camel wazir', 'white red black blue cyan gold'],
   ['knight alfil dabbaba wazir', 'white red blue gold black'],
+  ['knight antelope knight antelope', 'black red blue lime yellow', '1111 0101 1011 0011'],
   ['knight dromedary wazir camel', 'white blue pink black red'],
   ['knight dabbaba', 'black yellow cyan'],
   // ['knight alfil camel', 'white blue red gold'],
@@ -71,6 +72,8 @@ let myArmies = [
   ['knight zebra camel', 'white red blue gold'],
   ['stag', 'black red'],
   ['stag antelope zebra giraffe', 'white red blue gold green'],
+  ['stag ferz eland dabbaba', 'black red blue lime yellow', '0101 0011 1101 1111'],
+  ['stag ferz giraffe ferz', 'white silver black yellow red', '0011 0010 1000 1000'],
   ['stag giraffe stag camel', 'black blue red yellow lime'],
   ['wazir antelope zebra dabbaba', 'white yellow blue red black'],
   // ['wazir camel dabbaba', 'white blue red gold'],
@@ -82,12 +85,12 @@ let myArmies = [
   ['wazir zebra', 'white cyan red'],
   ['zebra camel', 'white cyan purple'],
   ['zebra ferz dromedary dabbaba', 'white red blue yellow pink'],
+  ['zebra ferz stag zebra', 'black blue cyan red yellow', '0111 1100 0111 0101'],
   ['zebra giraffe camel camel', 'white blue red gold black'],
   ['zebra stag', 'white red black'],
   ['zebra stag giraffe', 'black cyan red yellow'],
   ['zebra wazir zebra knight dabbaba', 'black red blue gold green pink']
 ];
-
 // Presented in the Numberphile videos:
 let numberphileArmies = [
   ['knight', 'white black'],
