@@ -49,7 +49,7 @@ export const colors = {
   silver: [209, 212, 216]
 };
 
-export const defaultPalette = 'white red blue gold green cyan black pink lime purple';
+export const defaultPalette = 'white red blue gold green cyan black pink lime purple silver';
 
 export const paintThresholds = {
   minBoardSize: 500_000,
