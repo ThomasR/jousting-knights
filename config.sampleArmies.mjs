@@ -102,7 +102,21 @@ let numberphileArmies = [
   ['wazir ferz wazir ferz', 'white black red cyan purple']
 ];
 
-const sampleSorter = (a, b) => a[0].localeCompare(b[0]);
+let jonkaArmies = [
+  ['alfil wazir antelope', 'white black red cyan', '010 001 010'],
+  ['knight eland wazir', 'white black red cyan', '011 001 100'],
+  ['camel zebra alfil', 'red white black silver', '001 101 000'],
+  ['knight wazir camel', 'white black red cyan', '001 100 110'],
+  ['knight wazir camel', 'white black red cyan', '010 001 110'],
+  ['knight wazir camel', 'white black red cyan', '000 001 010'],
+  ['knight wazir camel', 'white black red cyan', '001 001 010'],
+  ['wazir camel knight camel', 'white lime red green pink', '0111 1000 0101 1000'],
+  ['knight wazir camel', 'white black red cyan', '010 101 010'],
+  ['wazir alfil ferz zebra', 'lime black red gold white', '0001 0000 1001 1010'],
+  ['wazir dabbaba', 'white black red']
+];
+
+const sampleSorter = ([a], [b]) => (a.split(' ').length - b.split(' ').length) || (a < b ? -1 : 1);
 
 export default [{
   label: 'Interesting patterns',
@@ -113,4 +127,7 @@ export default [{
 }, {
   label: 'Presented on Numberphile',
   values: numberphileArmies
+}, {
+  label: 'By Jonas Karlsson  (jonka364.github.io)',
+  values: jonkaArmies
 }];

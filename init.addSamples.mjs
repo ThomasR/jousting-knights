@@ -27,10 +27,24 @@ export default function () {
     let legend = document.createElement('legend');
     legend.textContent = sampleArmy.label;
     fieldset.appendChild(legend);
+    let seen = {};
     sampleArmy.values.forEach(([army, palette, enmities]) => {
       let button = document.createElement('button');
       button.type = 'button';
-      button.textContent = army;
+      if (Object.hasOwn(seen, army)) {
+        let i = seen[army];
+        if (typeof i === 'number') {
+          seen[army] = i + 1;
+          button.textContent = `${army} ${i + 1}` ;
+        } else {
+          seen[army].textContent = `${army} 1`;
+          button.textContent = `${army} 2` ;
+          seen[army] = 2;
+        }
+      } else {
+        button.textContent = army;
+        seen[army] = button;
+      }
       button.dataset.army = army;
       button.dataset.palette = palette;
       if (!enmities) {

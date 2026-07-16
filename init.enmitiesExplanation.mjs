@@ -28,7 +28,7 @@ const getAttackedPieces = ({
 }) => {
   let mask = enmities[index];
   if (/^0+$/.test(mask)) {
-    return ['nothing'];
+    return ['nothing (dummy piece)'];
   }
   if (army.length >= 2 && /^1+$/.test(mask)) {
     return ['everything'];

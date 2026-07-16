@@ -45,7 +45,8 @@ export const colors = {
   cyan: [0, 204, 201],
   blue: [8, 114, 192],
   purple: [139, 11, 177],
-  pink: [255, 137, 208]
+  pink: [255, 137, 208],
+  silver: [209, 212, 216]
 };
 
 export const defaultPalette = 'white red blue gold green cyan black pink lime purple';
