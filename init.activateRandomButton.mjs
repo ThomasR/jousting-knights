@@ -15,14 +15,14 @@
  *
  */
 
-import pieceLibrary from './config.pieceLibrary.mjs';
+import pieceLibrary, { aliases } from './config.pieceLibrary.mjs';
 import { randomArmyButton, randomEnmitiesButton, triggerFormInput } from './htmlElements.mjs';
 import { armyField, enmitiesField, paletteField } from './formFields.mjs';
 import { defaultPalette, maxRandomArmySize, minRandomArmySize } from './config.mjs';
 import { getDefaultEnmities } from './coreLogic.mjs';
 import refresh from './refresh.mjs';
 
-const pieceTypes = Object.keys(pieceLibrary).filter(p => p !== 'elephant');
+const pieceTypes = Object.keys(pieceLibrary).filter(p => !Object.hasOwn(aliases, p));
 
 const getRandomBetween = (a, b) => a + Math.floor(Math.random() * (1 + b - a));
 
