@@ -16,7 +16,7 @@
  */
 
 import { colors } from './config.mjs';
-import pieceLibrary from './config.pieceLibrary.mjs';
+import pieceLibrary, { aliases } from './config.pieceLibrary.mjs';
 import { armyInfo, paletteInfo } from './htmlElements.mjs';
 import { armyField, enmitiesField, paletteField } from './formFields.mjs';
 
@@ -24,7 +24,13 @@ export default function initFormFields() {
   let pieceTypes = Object.keys(pieceLibrary);
   armyField.itemPattern = pieceTypes.join('|');
   armyField.minLength = 1;
-  pieceTypes = pieceTypes.filter(p => p !== 'elephant').map(p => (p === 'alfil') ? 'alfil/elephant' : p);
+  const inverseAliases = Object.fromEntries(Object.entries(aliases).map(x => x.toReversed()));
+  pieceTypes = pieceTypes.filter(p => !Object.hasOwn(aliases, p)).map(p => {
+    if (Object.hasOwn(inverseAliases, p)) {
+      return `${p}/${inverseAliases[p]}`;
+    }
+    return p;
+  });
   armyInfo.textContent = `Available pieces: ${pieceTypes.join(', ')}.`;
   paletteInfo.textContent = `Available colors: ${Object.keys(colors).join(', ')}.`;
   paletteField.itemPattern = Object.keys(colors).join('|');

@@ -30,6 +30,14 @@ const pieceLibrary = {
   zebra: [3, 2]
 };
 
-pieceLibrary.elephant = pieceLibrary.alfil;
+export const aliases = {
+  elefant: 'alfil',
+  fers: 'ferz',
+  vazir: 'wazir'
+}
+
+Object.entries(aliases).forEach(([alias, original]) => {
+  pieceLibrary[alias] = pieceLibrary[original];
+})
 
 export default pieceLibrary;
