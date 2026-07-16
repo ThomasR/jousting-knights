@@ -79,7 +79,9 @@ export default function () {
       army,
       colors
     });
-    enmitiesExplanation.style.setProperty('--line-count', enmities.length);
+    let oldLineCount = enmitiesExplanation.style.getPropertyValue('--line-count');
+    let newLineCount = Math.max(enmities.length, Number(oldLineCount));
+    enmitiesExplanation.style.setProperty('--line-count', newLineCount);
   };
   update();
   setInterval(update, 500);
