@@ -52,7 +52,7 @@ let myArmies = [
   ['ferz antelope dabbaba', 'black yellow blue red'],
   ['ferz camel dabbaba wazir', 'white red black yellow purple'],
   ['ferz dabbaba antelope', 'black red yellow cyan'],
-  ['ferz stag alfil', 'white blue lime gold'],
+  ['ferz stag alfil', 'white black red blue', '001 100 011'],
   ['ferz wazir stag zebra camel', 'white red blue lime purple orange'],
   ['giraffe antelope', 'black red gold'],
   ['giraffe camel alfil', 'white gold black blue', '010 001 110'],
@@ -102,9 +102,14 @@ let numberphileArmies = [
   ['wazir ferz wazir ferz', 'white black red cyan purple']
 ];
 
+const sampleSorter = (a, b) => a[0].localeCompare(b[0]);
+
 export default [{
   label: 'Interesting patterns',
-  values: myArmies.sort(([a], [b]) => (a.split(' ').length - b.split(' ').length) || (a < b ? -1 : 1))
+  values: myArmies.filter(x => x.length === 2).sort(sampleSorter)
+}, {
+  label: 'Samples with custom enmities',
+  values: myArmies.filter(x => x.length === 3).sort(sampleSorter)
 }, {
   label: 'Presented on Numberphile',
   values: numberphileArmies
