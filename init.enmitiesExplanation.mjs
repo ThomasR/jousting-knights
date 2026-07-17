@@ -83,6 +83,6 @@ export default function () {
     let newLineCount = Math.max(enmities.length, Number(oldLineCount));
     enmitiesExplanation.style.setProperty('--line-count', newLineCount);
   };
-  update();
+  requestAnimationFrame(update);
   setInterval(update, 500);
 }
