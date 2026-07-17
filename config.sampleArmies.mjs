@@ -122,15 +122,16 @@ let jonkaArmies = [
 const sampleSorter = ([a], [b]) => (a.split(' ').length - b.split(' ').length) || (a < b ? -1 : 1);
 
 export default [{
-  label: 'Interesting patterns',
+  label: 'Samples with default enmities',
   values: myArmies.filter(x => x.length === 2).sort(sampleSorter)
 }, {
   label: 'Samples with custom enmities',
   values: myArmies.filter(x => x.length === 3).sort(sampleSorter)
 }, {
   label: 'Presented on Numberphile',
-  values: numberphileArmies
+  values: numberphileArmies,
+  open: true
 }, {
-  label: 'By Jonas Karlsson  (jonka364.github.io)',
+  label: 'By Jonas Karlsson (jonka364.github.io)',
   values: jonkaArmies
 }];

@@ -22,9 +22,13 @@ import { getDefaultEnmities } from './coreLogic.mjs';
 
 export default function () {
   sampleArmies.forEach(sampleArmy => {
-    let fieldset = document.createElement('fieldset');
+    let fieldset = document.createElement('details');
+    fieldset.className = 'fieldset';
+    if (sampleArmy.open) {
+      fieldset.setAttribute('open', 'open');
+    }
     form.insertBefore(fieldset, null);
-    let legend = document.createElement('legend');
+    let legend = document.createElement('summary');
     legend.textContent = sampleArmy.label;
     fieldset.appendChild(legend);
     let seen = {};
