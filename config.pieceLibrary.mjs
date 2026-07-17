@@ -34,10 +34,10 @@ export const aliases = {
   elefant: 'alfil',
   fers: 'ferz',
   vazir: 'wazir'
-}
+};
 
 Object.entries(aliases).forEach(([alias, original]) => {
   pieceLibrary[alias] = pieceLibrary[original];
-})
+});
 
 export default pieceLibrary;

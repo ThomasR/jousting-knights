@@ -34,19 +34,19 @@ export const minRandomArmySize = 2;
 export const maxRandomArmySize = 5;
 
 export const colors = {
-  white: [255, 255, 255],
   black: [0, 0, 0],
-  red: [247, 46, 31],
-  orange: [255, 162, 58],
-  gold: [255, 210, 0],
-  yellow: [255, 255, 22],
-  lime: [0, 240, 20],
-  green: [0, 140, 52],
-  cyan: [0, 204, 201],
   blue: [8, 114, 192],
-  purple: [139, 11, 177],
+  cyan: [0, 204, 201],
+  gold: [255, 210, 0],
+  green: [0, 140, 52],
+  lime: [0, 240, 20],
+  orange: [255, 162, 58],
   pink: [255, 137, 208],
-  silver: [209, 212, 216]
+  purple: [139, 11, 177],
+  red: [247, 46, 31],
+  silver: [209, 212, 216],
+  white: [255, 255, 255],
+  yellow: [255, 255, 22]
 };
 
 export const defaultPalette = 'white red blue gold green cyan black pink lime purple silver';

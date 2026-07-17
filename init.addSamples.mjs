@@ -35,10 +35,10 @@ export default function () {
         let i = seen[army];
         if (typeof i === 'number') {
           seen[army] = i + 1;
-          button.textContent = `${army} ${i + 1}` ;
+          button.textContent = `${army} ${i + 1}`;
         } else {
           seen[army].textContent = `${army} 1`;
-          button.textContent = `${army} 2` ;
+          button.textContent = `${army} 2`;
           seen[army] = 2;
         }
       } else {
