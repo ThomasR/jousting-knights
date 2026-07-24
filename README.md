@@ -25,6 +25,8 @@ Live version: [https://thomas-rosenau.de/jousting-knights](https://thomas-rosena
 * Enter a list of chess pieces in the _Army_ field, separated by spaces or commas.
   Choose a color palette you like and enter it in the _Color palette_ field.
   Note that you need one more color than the number of pieces to account for empty squares.
+* Configure enmities by checking the checkboxes. By default, any given piece attacks all other piece types, but not
+  itself.
 * Alternatively, pick one of the examples at the bottom or click the _Random_ button!
 * Use the provided sliders to control the board size and animation rate.
 * The application will draw the resulting pattern.
