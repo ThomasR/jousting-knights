@@ -4,17 +4,21 @@ a.k.a. **Amazing Chessboard Patterns**
 
 <img src="./gallery/knight-knight-250_000.png" width="150" height="150" alt="Red & Black Knights Pattern"></img>
 
-This is an interactive web application for generating chessboard patterns based on the Numberphile videos _[Red & Black Knights (extraordinary result)](https://www.youtube.com/watch?v=UiX4CFIiegM)_ and _[Amazing Chessboard Patterns (extra)](https://www.youtube.com/watch?v=VgmDuBCayPw)_.
+This is an interactive web application for generating chessboard patterns based on the Numberphile videos
+_[Red & Black Knights (extraordinary result)](https://www.youtube.com/watch?v=UiX4CFIiegM)_ and
+_[Amazing Chessboard Patterns (extra)](https://www.youtube.com/watch?v=VgmDuBCayPw)_.
 
 The pattern generation rule in a nutshell:
 
-* Fill an oversized chessboard with knights (or generalized [fairy chess pieces](https://en.wikipedia.org/wiki/Fairy_chess_piece)) of one or more opposing armies.
+* Fill an oversized chessboard with knights (or generalized
+  [fairy chess pieces](https://en.wikipedia.org/wiki/Fairy_chess_piece)) of one or more opposing armies.
 * Start at the center and spiral outwards.
 * Skip any square that is threatened by an enemy piece.
 
 This produces incredible patterns, especially when using multiple piece types. See the _Gallery_ below for examples.
 
-In addition to the piece types presented in the videos, this app also features _camels_, _giraffes_, _stags_, and _elands_.
+In addition to the piece types presented in the videos, this app also features _camels_, _giraffes_, _stags_, and
+_elands_.
 
 ## Try it out now
 

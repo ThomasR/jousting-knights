@@ -176,6 +176,7 @@ button {
         grid-template-columns: auto;
         justify-items: start;
         grid-row-gap: .25em;
+
         span.label:not(:first-of-type) {
             margin-top: .5em;
         }
