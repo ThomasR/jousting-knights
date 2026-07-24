@@ -58,7 +58,7 @@ export default function refresh(event) {
   if (enmities === defaultEnmities) {
     saveButton.dataset.filename = `${army.join('-')}-${sizeStr}.png`;
   } else {
-    saveButton.dataset.filename = `${army.join('-')}-${enmities}-${sizeStr}.png`;
+    saveButton.dataset.filename = `${army.join('-')}-${enmities.replaceAll(' ', '-')}-${sizeStr}.png`;
   }
 
   let currentValid = `${desiredSquareCount}-${enmities}-${army.join(',')}-${palette.flat().join(',')}`;
