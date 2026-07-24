@@ -78,7 +78,7 @@ export default function refresh(event) {
     enmities,
     desiredSquareCount,
     palette,
-    callback: (e) => {
+    callback: () => {
       canvasContainer.classList.remove('loading');
     }
   });

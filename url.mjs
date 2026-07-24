@@ -17,6 +17,7 @@
 
 import { armyInput, form } from './htmlElements.mjs';
 import { getDefaultEnmities } from './coreLogic.mjs';
+import { enmitiesField } from './formFields.mjs';
 
 let normalize = str => str.replaceAll(/[\s,]+/g, ' ').trim();
 
@@ -44,6 +45,9 @@ export function updateFormFromUrl() {
     if (element.name && params.has(element.name)) {
       element.value = params.get(element.name);
     }
+  }
+  if (params.has('enmities')) {
+    enmitiesField.stringValue = params.get('enmities');
   }
   armyInput.dispatchEvent(new Event('input'));
 }

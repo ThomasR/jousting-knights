@@ -31,13 +31,13 @@ addSamples();
 updateSlider();
 activateSaveButton();
 activateRandomButton();
-updateFormFromUrl();
+
+form.addEventListener('input', refresh);
 
 window.addEventListener('hashchange', () => {
   updateFormFromUrl();
   refresh();
 });
 
-form.addEventListener('input', refresh);
-
+updateFormFromUrl();
 refresh();
