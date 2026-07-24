@@ -29,6 +29,7 @@ const onMessage = ({ data: [payload, callbackId] }) => {
   let callback = callbacks[callbackId];
   if (callback) {
     callback.apply(null, payload);
+    delete callbacks[callbackId];
   }
 };
 
@@ -37,13 +38,15 @@ const onError = (e) => {
 };
 
 const initializeWorker = () => {
-  myWorker = new Worker(url, {
-    type: 'module'
-  });
-  callbacks = {};
-  idCounter = 0;
-  myWorker.onmessage = onMessage;
-  myWorker.onerror = onError;
+  if (!myWorker) {
+    myWorker = new Worker(url, {
+      type: 'module'
+    });
+    myWorker.onmessage = onMessage;
+    myWorker.onerror = onError;
+    callbacks = {};
+    idCounter = 0;
+  }
 };
 
 export default function updateBoard({
@@ -63,23 +66,23 @@ export default function updateBoard({
   idCounter++;
   callbacks[callbackId] = callback;
 
-  try {
+  let transfer = [];
+  let canvasArg = null;
+
+  if (!offscreenCanvas) {
     offscreenCanvas = canvas.transferControlToOffscreen();
-  } catch {
-    const newCanvas = document.createElement('canvas');
-    newCanvas.id = 'output';
-    canvas.parentNode.replaceChild(newCanvas, canvas);
-    offscreenCanvas = newCanvas.transferControlToOffscreen();
+    transfer = [offscreenCanvas];
+    canvasArg = offscreenCanvas;
   }
 
   myWorker.postMessage(['draw', {
-    canvas: offscreenCanvas,
+    canvas: canvasArg,
     palette,
     army: army.map(pieceType => pieceLibrary[pieceType]),
     enmities,
     desiredSquareCount,
     callbackId
-  }], [offscreenCanvas]);
+  }], transfer);
 
 };
 

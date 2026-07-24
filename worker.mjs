@@ -19,11 +19,14 @@ import incrementalDraw from './canvas.mjs';
 import { getPixelPainter } from './coreLogic.mjs';
 
 const sharedState = {
-  cancelled: false
+  cancelled: false,
+  idle: true
 };
 
 const cancel = () => {
-  sharedState.cancelled = true;
+  if (!sharedState.idle) {
+    sharedState.cancelled = true;
+  }
 };
 
 const minWidth = 5;
@@ -37,13 +40,21 @@ function callback({ callbackId, args }) {
   message([args, callbackId]);
 }
 
-const draw = ({ canvas, palette, army, desiredSquareCount, enmities, callbackId }) => {
+let canvas;
+
+const draw = ({ canvas: argCanvas, palette, army, desiredSquareCount, enmities, callbackId }) => {
+
+  sharedState.idle = false;
 
   let boardSize = Math.ceil(desiredSquareCount ** .5);
   if (boardSize % 2 === 0) {
     boardSize++;
   }
   boardSize = Math.max(boardSize, minWidth);
+
+  if (argCanvas) {
+    canvas = argCanvas;
+  }
 
   canvas.width = boardSize;
   canvas.height = boardSize;
@@ -61,6 +72,7 @@ const draw = ({ canvas, palette, army, desiredSquareCount, enmities, callbackId 
     palette,
     sharedState,
     callback: (finished) => {
+      sharedState.idle = true;
       callback({ args: [finished], callbackId });
     }
   });
