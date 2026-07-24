@@ -15,12 +15,12 @@
  *
  */
 
-import { colors } from './config.mjs';
+import { boardSizes, colors, defaultPalette, nnbsp } from './config.mjs';
 import pieceLibrary, { aliases } from './config.pieceLibrary.mjs';
-import { armyInfo, paletteInfo } from './htmlElements.mjs';
+import { armyInfo, armyInput, boardSizeInfo, paletteInfo, paletteInput, sizeInput } from './htmlElements.mjs';
 import { armyField, enmitiesField, paletteField } from './formFields.mjs';
 
-export default function initFormFields() {
+const setInitialState = () => {
   let pieceTypes = Object.keys(pieceLibrary);
   armyField.itemPattern = pieceTypes.join('|');
   armyField.minLength = 1;
@@ -38,4 +38,64 @@ export default function initFormFields() {
   enmitiesField.itemPattern = `[01]{${armyField.value.length}}`;
   enmitiesField.minLength = armyField.value.length;
   enmitiesField.maxLength = armyField.value.length;
+};
+
+const refreshCheckboxGrid = () => {
+  if (!armyInput.checkValidity() || !paletteInput.checkValidity()) {
+    return;
+  }
+
+  let paletteRaw = paletteField.value;
+  let labels = armyField.value.map((piece, i) => `${paletteRaw[i + 1]} ${piece}`);
+  labels = labels.map(l => l.replaceAll(/(^| )(.)/g, (x) => `${x.toUpperCase()}`));
+  labels = labels.map(l => l.replaceAll(/\bGold\b/g, 'Golden'));
+  enmitiesField.labels = labels;
+};
+
+const initInteractivity = () => {
+  sizeInput.addEventListener('input', () => {
+    let desiredSquareCount = boardSizes[sizeInput.value] ?? boardSizes[0];
+    boardSizeInfo.textContent = `${String(desiredSquareCount)
+      .replaceAll(/(.)(?=(?:.{3})+$)/g, `$1${nnbsp}`)}${nnbsp}px`;
+  });
+
+  let lastArmyValue;
+  armyInput.addEventListener('input', () => {
+    if (!armyInput.checkValidity()) {
+      return;
+    }
+    let armyValue = armyField.stringValue;
+    if (armyValue === lastArmyValue) {
+      return;
+    }
+    lastArmyValue = armyValue;
+    let paletteWasValid = paletteInput.checkValidity();
+    let minPaletteLength = armyField.value.length + 1;
+    paletteField.minLength = minPaletteLength;
+
+    if (!paletteInput.checkValidity() && paletteWasValid) {
+      let palette = paletteField.value;
+      while (palette.length < minPaletteLength) {
+        let someColor = defaultPalette.find((c, i) => (i > 0) && (!palette.includes(c) || i === defaultPalette.length - 1));
+        palette.push(someColor);
+      }
+      paletteField.value = palette;
+    }
+    refreshCheckboxGrid();
+  });
+
+  let lastPaletteValue;
+  paletteInput.addEventListener('input', () => {
+    let paletteValue = paletteField.stringValue;
+    if (paletteValue === lastPaletteValue) {
+      return;
+    }
+    lastPaletteValue = paletteValue;
+    refreshCheckboxGrid();
+  });
+};
+
+export default function initFormFields() {
+  setInitialState();
+  initInteractivity();
 }

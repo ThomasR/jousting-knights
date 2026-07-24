@@ -16,9 +16,10 @@
  */
 
 import sampleArmies from './config.sampleArmies.mjs';
-import { form, triggerFormInput } from './htmlElements.mjs';
+import { armyInput, form } from './htmlElements.mjs';
 import { armyField, enmitiesField, paletteField } from './formFields.mjs';
 import { getDefaultEnmities } from './coreLogic.mjs';
+import refresh from './refresh.mjs';
 
 export default function () {
   sampleArmies.forEach(sampleArmy => {
@@ -53,7 +54,7 @@ export default function () {
       button.dataset.palette = palette;
       if (!enmities) {
         let armySize = [...army.matchAll(/\S+/g)].length;
-        enmities = getDefaultEnmities(armySize).join(' ');
+        enmities = getDefaultEnmities(armySize);
       }
       button.dataset.enmities = enmities;
       fieldset.appendChild(button);
@@ -62,8 +63,11 @@ export default function () {
         e.stopPropagation();
         armyField.stringValue = button.dataset.army;
         paletteField.stringValue = button.dataset.palette;
-        enmitiesField.stringValue = button.dataset.enmities;
-        triggerFormInput();
+        armyInput.dispatchEvent(new Event('input'));
+        if (button.dataset.enmities) {
+          enmitiesField.stringValue = button.dataset.enmities;
+        }
+        refresh();
       });
     });
   });

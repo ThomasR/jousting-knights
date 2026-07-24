@@ -23,7 +23,6 @@ import activateRandomButton from './init.activateRandomButton.mjs';
 import updateSlider from './init.updateSlider.mjs';
 import './init.hotkeys.mjs';
 import './init.mouseWheelZoom.mjs';
-import setupEnmitiesExplanation from './init.enmitiesExplanation.mjs';
 import { form } from './htmlElements.mjs';
 import { updateFormFromUrl } from './url.mjs';
 
@@ -33,7 +32,6 @@ updateSlider();
 activateSaveButton();
 activateRandomButton();
 updateFormFromUrl();
-setupEnmitiesExplanation();
 
 window.addEventListener('hashchange', () => {
   updateFormFromUrl();

@@ -16,8 +16,11 @@
 */
 
 import ArrayField from './ArrayField.mjs';
-import { armyInput, enmitiesInput, paletteInput } from './htmlElements.mjs';
+import { armyInput, checkboxGridContainer, paletteInput } from './htmlElements.mjs';
+import CheckboxGrid from './CheckboxGrid.mjs';
 
 export const armyField = new ArrayField({ htmlElement: armyInput });
 export const paletteField = new ArrayField({ htmlElement: paletteInput });
-export const enmitiesField = new ArrayField({ htmlElement: enmitiesInput });
+export const enmitiesField = new CheckboxGrid({
+  container: checkboxGridContainer, name: 'enmities', labelPostfix: ' attacks:'
+});

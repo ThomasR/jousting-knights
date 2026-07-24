@@ -16,10 +16,9 @@
  */
 
 import pieceLibrary, { aliases } from './config.pieceLibrary.mjs';
-import { randomArmyButton, randomEnmitiesButton, triggerFormInput } from './htmlElements.mjs';
-import { armyField, enmitiesField, paletteField } from './formFields.mjs';
-import { defaultPalette, maxRandomArmySize, minRandomArmySize } from './config.mjs';
-import { getDefaultEnmities } from './coreLogic.mjs';
+import { armyInput, randomArmyButton, randomEnmitiesButton } from './htmlElements.mjs';
+import { armyField, enmitiesField } from './formFields.mjs';
+import { maxRandomArmySize, minRandomArmySize } from './config.mjs';
 import refresh from './refresh.mjs';
 
 const pieceTypes = Object.keys(pieceLibrary).filter(p => !Object.hasOwn(aliases, p));
@@ -31,16 +30,13 @@ export default function () {
     e.preventDefault();
     e.stopPropagation();
     let armySize = getRandomBetween(minRandomArmySize, maxRandomArmySize);
-    let army = Array(armySize).fill(0).map(() => {
+    let army = Array.from({ length: armySize }, () => {
       let pieceIndex = getRandomBetween(0, pieceTypes.length - 1);
       return pieceTypes[pieceIndex];
     });
     armyField.value = army;
-    if (paletteField.value.length <= armySize) {
-      paletteField.value = defaultPalette.split(' ').slice(0, armySize + 1);
-    }
-    enmitiesField.value = getDefaultEnmities(armySize);
-    triggerFormInput();
+    armyInput.dispatchEvent(new Event('input'));
+    refresh();
   });
 
   randomEnmitiesButton.addEventListener('click', (e) => {
@@ -50,11 +46,11 @@ export default function () {
     let lastValue = enmitiesField.stringValue;
     let nextValue;
     do {
-      nextValue = Array(armySize).fill(0).map(() => {
+      nextValue = Array.from({ length: armySize }, () => {
         return getRandomBetween(1, 2 ** armySize - 1).toString(2).padStart(armySize, '0');
-      });
-    } while (nextValue.join(' ') === lastValue);
-    enmitiesField.value = nextValue;
+      }).join(' ');
+    } while (nextValue === lastValue);
+    enmitiesField.stringValue = nextValue;
     refresh();
   });
 

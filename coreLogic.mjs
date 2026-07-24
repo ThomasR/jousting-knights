@@ -20,12 +20,12 @@ import { paintThresholds } from './config.mjs';
 
 export const getDefaultEnmities = armySize => {
   if (armySize === 1) {
-    return ['1'];
+    return '1';
   }
-  return Array(armySize).fill(0).map((_, i) => {
+  return Array.from({ length: armySize }, (_, i) => {
     let mask = (1 << armySize) - 1 - (1 << armySize - 1 - i);
     return mask.toString(2).padStart(armySize, '0');
-  });
+  }).join(' ');
 };
 
 const getMovementCatalog = army => army.map(movement => {
@@ -43,7 +43,7 @@ const getMovementCatalog = army => army.map(movement => {
 
 const getThreatMasks = (army, enmities) => ({
   me: army.map((_, i) => 1 << (army.length - 1 - i)),
-  enemies: enmities.map(x => parseInt(x, 2))
+  enemies: enmities.split(' ').map(x => parseInt(x, 2))
 });
 
 export const getPixelPainter = ({

@@ -15,7 +15,7 @@
  *
  */
 
-import { form } from './htmlElements.mjs';
+import { armyInput, form } from './htmlElements.mjs';
 import { getDefaultEnmities } from './coreLogic.mjs';
 
 let normalize = str => str.replaceAll(/[\s,]+/g, ' ').trim();
@@ -26,7 +26,7 @@ export function updateUrl() {
   let army = normalize(params.get('army'));
   params.set('army', army);
   let armySize = army.split(' ').length;
-  let defaultEnmities = getDefaultEnmities(armySize).join(' ');
+  let defaultEnmities = getDefaultEnmities(armySize);
   let enmities = normalize(params.get('enmities'));
   if (enmities === defaultEnmities) {
     params.delete('enmities');
@@ -45,4 +45,5 @@ export function updateFormFromUrl() {
       element.value = params.get(element.name);
     }
   }
+  armyInput.dispatchEvent(new Event('input'));
 }

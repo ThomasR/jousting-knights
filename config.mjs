@@ -49,7 +49,7 @@ export const colors = {
   yellow: [255, 255, 22]
 };
 
-export const defaultPalette = 'white red blue gold green cyan black pink lime purple silver';
+export const defaultPalette = 'white red blue gold green cyan black pink lime purple silver'.split(' ');
 
 export const paintThresholds = {
   minBoardSize: 500_000,

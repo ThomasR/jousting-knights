@@ -15,10 +15,10 @@
 *
 */
 
-import { boardSizes, colors, nnbsp } from './config.mjs';
+import { boardSizes, colors } from './config.mjs';
 import updateBoard from './workerBridge.mjs';
 
-import { boardSizeInfo, canvasContainer, enmitiesInput, saveButton, sizeInput } from './htmlElements.mjs';
+import { canvasContainer, saveButton, sizeInput } from './htmlElements.mjs';
 import { armyField, enmitiesField, paletteField } from './formFields.mjs';
 import { updateUrl } from './url.mjs';
 import { updateTitle } from './page.mjs';
@@ -28,8 +28,6 @@ let lastValid = null;
 
 export default function refresh(event) {
   let desiredSquareCount = boardSizes[sizeInput.value] ?? boardSizes[0];
-  boardSizeInfo.textContent = `${String(desiredSquareCount).replaceAll(/(.)(?=(?:.{3})+$)/g, `$1${nnbsp}`)}${nnbsp}px`;
-
   let isArmyValid = armyField.checkValidity();
   if (!isArmyValid) {
     if (event) {
@@ -40,23 +38,7 @@ export default function refresh(event) {
   }
   let army = armyField.value;
 
-  let requiredEnmitiesLength = army.length;
-  enmitiesField.itemPattern = `[01]{${requiredEnmitiesLength}}`;
-  enmitiesField.minLength = requiredEnmitiesLength;
-  enmitiesField.maxLength = requiredEnmitiesLength;
-
-  const defaultEnmities = getDefaultEnmities(requiredEnmitiesLength);
-  let isEnmitiesValid = enmitiesField.checkValidity();
-  if (!isEnmitiesValid) {
-    if (event?.target === enmitiesInput) {
-      return;
-    } else {
-      enmitiesField.value = defaultEnmities;
-    }
-  }
-
   let requiredPaletteLength = army.length + 1;
-  paletteField.minLength = requiredPaletteLength;
 
   let isPaletteValid = paletteField.checkValidity();
   if (!isPaletteValid) {
@@ -66,18 +48,20 @@ export default function refresh(event) {
       paletteField.reset();
     }
   }
+
   let palette = paletteField.value.slice(0, requiredPaletteLength).map(color => colors[color]);
 
-  const enmities = enmitiesField.value;
+  const enmities = enmitiesField.stringValue;
+  const defaultEnmities = getDefaultEnmities(army.length);
 
   let sizeStr = String(desiredSquareCount).replace(/000000$/, '_000000').replace(/000$/, '_000');
-  if (enmities.join(' ') === defaultEnmities.join(' ')) {
+  if (enmities === defaultEnmities) {
     saveButton.dataset.filename = `${army.join('-')}-${sizeStr}.png`;
   } else {
-    saveButton.dataset.filename = `${army.join('-')}-${enmities.join('-')}-${sizeStr}.png`;
+    saveButton.dataset.filename = `${army.join('-')}-${enmities}-${sizeStr}.png`;
   }
 
-  let currentValid = `${desiredSquareCount}-${enmities.join('')}-${army.join(',')}-${palette.flat().join(',')}`;
+  let currentValid = `${desiredSquareCount}-${enmities}-${army.join(',')}-${palette.flat().join(',')}`;
   if (currentValid === lastValid) {
     // prevent refresh after user has only entered whitespace
     return;

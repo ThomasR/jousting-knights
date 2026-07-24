@@ -52,17 +52,6 @@ label[data-invalid-message] {
     }
 }
 
-#enmities-explanation {
-    --line-count: 1;
-    overflow: hidden;
-    height: calc(var(--line-count) * 1.25em);
-    margin-top: -1em;
-    margin-bottom: -.75em;
-    padding-bottom: .75em;
-    white-space: pre-wrap;
-    transition: height .5s ease-in-out;
-}
-
 .canvas-container {
     position: fixed;
     top: 10px;
@@ -128,6 +117,12 @@ fieldset {
 
 form {
     margin-bottom: 1rem;
+
+    h4 {
+        font-size: inherit;
+        font-weight: inherit;
+        margin-top: 0;
+    }
 }
 
 button {
@@ -135,6 +130,20 @@ button {
     min-width: auto;
     margin: .2rem;
     vertical-align: top;
+}
+
+.grid-container {
+    --item-count: 1;
+    display: grid;
+    justify-content: start;
+    grid-template-columns: repeat(calc(var(--item-count) + 1), auto);
+    justify-items: end;
+    grid-column-gap: 1em;
+    grid-row-gap: .5em;
+
+    label {
+        margin: 0 !important;
+    }
 }
 
 @media (aspect-ratio < 3 / 4) {
@@ -161,5 +170,14 @@ button {
         height: auto;
         max-height: unset;
         margin: 0;
+    }
+
+    .grid-container {
+        grid-template-columns: auto;
+        justify-items: start;
+        grid-row-gap: .25em;
+        span.label:not(:first-of-type) {
+            margin-top: .5em;
+        }
     }
 }
