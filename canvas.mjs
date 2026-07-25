@@ -77,8 +77,10 @@ export function incrementalDraw({ canvas, pixelPainter, palette, sharedState, ca
       callback(true);
       return;
     }
-    totalPainted += value;
-    const percentage = (Math.round(1000 * totalPainted / (width * height)) / 10).toFixed(1);
+    let { paintedCount, lowestPiecePosition } = value;
+    totalPainted += paintedCount;
+    const progress = Math.max(totalPainted, lowestPiecePosition + 1);
+    const percentage = (Math.round(1000 * progress / (width * height)) / 10).toFixed(1);
     console.timeLog(logMsg, `${percentage}%`);
     requestAnimationFrame(renderNextBatch);
   };

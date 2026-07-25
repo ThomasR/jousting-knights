@@ -96,9 +96,6 @@ export const getPixelPainter = ({
         }
         x = spiralX[spiralIndex];
         y = spiralY[spiralIndex];
-        if (pieceType === 0 && !occupied[spiralIndex]) {
-          paintedCount++;
-        }
       } while (occupied[spiralIndex] || (threatened[y * boardWidth + x] & myBitMask));
       lastPieceIndex[pieceType] = spiralIndex;
       occupied[spiralIndex] = 1;
@@ -116,18 +113,16 @@ export const getPixelPainter = ({
 
       // process result
       pixels[y * boardWidth + x] = paletteBytes[pieceType + 1];
-      if (pieceType) {
-        paintedCount++;
-      }
+      paintedCount++;
       if (paintedCount > updateThreshold) {
         ctx.putImageData(imgData, 0, 0);
-        yield paintedCount;
+        yield { paintedCount, lowestPiecePosition: Math.min(...lastPieceIndex) };
         paintedCount = 0;
         updateThreshold = Math.min(2 * updateThreshold, paintThresholds.maxPaint);
       }
     }
 
     ctx.putImageData(imgData, 0, 0);
-    yield paintedCount;
+    yield { paintedCount, lowestPiecePosition: squareCount - 1 };
   };
 };
