@@ -15,7 +15,13 @@
 *
 */
 
-export default function incrementalDraw({ canvas, pixelPainter, palette, sharedState, callback }) {
+export function clear(canvas) {
+  const ctx = canvas.getContext('2d');
+  const { width, height } = canvas;
+  ctx.clearRect(0, 0, width, height);
+}
+
+export function incrementalDraw({ canvas, pixelPainter, palette, sharedState, callback }) {
   console.time('[🎨canvas] ⚙️ Initializing canvas');
   const ctx = canvas.getContext('2d');
   const { width, height } = canvas;

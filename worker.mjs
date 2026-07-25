@@ -15,7 +15,7 @@
  *
  */
 
-import incrementalDraw from './canvas.mjs';
+import {incrementalDraw, clear }from './canvas.mjs';
 import { getPixelPainter } from './coreLogic.mjs';
 
 const sharedState = {
@@ -59,22 +59,27 @@ const draw = ({ canvas: argCanvas, palette, army, desiredSquareCount, enmities, 
   canvas.width = boardSize;
   canvas.height = boardSize;
 
-  const pixelPainter = getPixelPainter({
-    boardWidth: boardSize,
-    army,
-    enmities,
-    palette
-  });
+  clear(canvas);
 
-  incrementalDraw({
-    canvas,
-    pixelPainter,
-    palette,
-    sharedState,
-    callback: (finished) => {
-      sharedState.idle = true;
-      callback({ args: [finished], callbackId });
-    }
+  requestAnimationFrame(() => {
+
+    const pixelPainter = getPixelPainter({
+      boardWidth: boardSize,
+      army,
+      enmities,
+      palette
+    });
+
+    incrementalDraw({
+      canvas,
+      pixelPainter,
+      palette,
+      sharedState,
+      callback: (finished) => {
+        sharedState.idle = true;
+        callback({ args: [finished], callbackId });
+      }
+    });
   });
 };
 
