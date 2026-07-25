@@ -20,6 +20,12 @@ import pieceLibrary, { aliases } from './config.pieceLibrary.mjs';
 import { armyInfo, armyInput, boardSizeInfo, paletteInfo, paletteInput, sizeInput } from './htmlElements.mjs';
 import { armyField, enmitiesField, paletteField } from './formFields.mjs';
 
+const updateSizeInfo = () => {
+  let desiredSquareCount = boardSizes[sizeInput.value] ?? boardSizes[0];
+  boardSizeInfo.textContent = `${String(desiredSquareCount)
+    .replaceAll(/(.)(?=(?:.{3})+$)/g, `$1${nnbsp}`)}${nnbsp}px`;
+};
+
 const setInitialState = () => {
   let pieceTypes = Object.keys(pieceLibrary);
   armyField.itemPattern = pieceTypes.join('|');
@@ -38,6 +44,7 @@ const setInitialState = () => {
   enmitiesField.itemPattern = `[01]{${armyField.value.length}}`;
   enmitiesField.minLength = armyField.value.length;
   enmitiesField.maxLength = armyField.value.length;
+  updateSizeInfo();
 };
 
 const refreshCheckboxGrid = () => {
@@ -53,11 +60,7 @@ const refreshCheckboxGrid = () => {
 };
 
 const initInteractivity = () => {
-  sizeInput.addEventListener('input', () => {
-    let desiredSquareCount = boardSizes[sizeInput.value] ?? boardSizes[0];
-    boardSizeInfo.textContent = `${String(desiredSquareCount)
-      .replaceAll(/(.)(?=(?:.{3})+$)/g, `$1${nnbsp}`)}${nnbsp}px`;
-  });
+  sizeInput.addEventListener('input', updateSizeInfo);
 
   let lastArmyValue;
   armyInput.addEventListener('input', () => {

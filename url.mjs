@@ -15,7 +15,7 @@
  *
  */
 
-import { armyInput, form } from './htmlElements.mjs';
+import { armyInput, form, sizeInput } from './htmlElements.mjs';
 import { getDefaultEnmities } from './coreLogic.mjs';
 import { enmitiesField } from './formFields.mjs';
 
@@ -50,4 +50,5 @@ export function updateFormFromUrl() {
     enmitiesField.stringValue = params.get('enmities');
   }
   armyInput.dispatchEvent(new Event('input'));
+  sizeInput.dispatchEvent(new Event('input'));
 }
