@@ -29,6 +29,10 @@ export const boardSizes = [
   100_000_000
 ];
 
+if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('Android')) {
+  boardSizes.pop();
+}
+
 export const defaultBoardSizeIndex = 3;
 export const minRandomArmySize = 2;
 export const maxRandomArmySize = 5;
