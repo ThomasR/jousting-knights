@@ -15,14 +15,13 @@
  *
  */
 
-import { canvasContainer } from './htmlElements.mjs';
+import { canvas } from './htmlElements.mjs';
 
 const button = document.getElementById('save');
 
 export default function () {
   button.addEventListener('click', (e) => {
     e.preventDefault();
-    const canvas = canvasContainer.querySelector('canvas');
     canvas.toBlob((blob) => {
       const url = URL.createObjectURL(blob);
 

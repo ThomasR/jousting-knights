@@ -16,7 +16,7 @@
  */
 
 import pieceLibrary from './config.pieceLibrary.mjs';
-import { canvasContainer } from './htmlElements.mjs';
+import { canvas } from './htmlElements.mjs';
 
 const url = new URL('./worker.mjs', import.meta.url);
 
@@ -56,7 +56,6 @@ export default function updateBoard({
   palette,
   callback
 }) {
-  let canvas = canvasContainer.querySelector('canvas');
   if (myWorker) {
     cancel();
   }

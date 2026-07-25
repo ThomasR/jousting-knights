@@ -15,28 +15,17 @@
  *
  */
 
-import { canvasContainer } from './htmlElements.mjs';
-
-const minZoom = 0;
-const minVisiblePixels = 9;
+import { canvas, canvasContainer } from './htmlElements.mjs';
+import { zoom } from './canvas.mjs';
 
 let lastHandled = 0;
-
 canvasContainer.addEventListener('wheel', (event) => {
   event.preventDefault();
   let now = Date.now();
-  if (now - lastHandled < 150) {
+  if (now - lastHandled < 100) {
     return;
   }
   lastHandled = now;
-  let canvas = canvasContainer.querySelector('canvas');
-  let currentZoomLevel = Number(canvas.dataset.zoomLevel || minZoom);
   let delta = Math.sign(-event.deltaY);
-  let nextZoomLevel = currentZoomLevel + delta;
-  const maxZoom = Math.floor(Math.log2(canvas.width / minVisiblePixels));
-  if (minZoom > nextZoomLevel || nextZoomLevel > maxZoom) {
-    return;
-  }
-  canvas.dataset.zoomLevel = nextZoomLevel;
-  canvas.style.transform = `scale(${2 ** nextZoomLevel})`;
+  zoom(canvas, delta);
 });

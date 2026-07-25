@@ -100,16 +100,17 @@ label[data-invalid-message] {
         width: 100%;
         height: 1px;
     }
+
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        image-rendering: crisp-edges;
+    }
 }
 
-canvas#output {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    image-rendering: crisp-edges;
-}
 
 fieldset {
     display: initial;

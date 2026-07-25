@@ -21,6 +21,25 @@ export function clear(canvas) {
   ctx.clearRect(0, 0, width, height);
 }
 
+export function resetZoom(canvas) {
+  canvas.style.transform = 'none';
+  delete canvas.dataset.zoomLevel;
+}
+
+const minZoom = 0;
+const minVisiblePixels = 9;
+
+export function zoom(canvas, direction) {
+  let currentZoomLevel = Number(canvas.dataset.zoomLevel || minZoom);
+  let nextZoomLevel = currentZoomLevel + direction;
+  const maxZoom = Math.floor(Math.log2(canvas.width / minVisiblePixels));
+  if (minZoom > nextZoomLevel || nextZoomLevel > maxZoom) {
+    return;
+  }
+  canvas.dataset.zoomLevel = nextZoomLevel;
+  canvas.style.transform = `scale(${2 ** nextZoomLevel})`;
+}
+
 export function incrementalDraw({ canvas, pixelPainter, palette, sharedState, callback }) {
   console.time('[🎨canvas] ⚙️ Initializing canvas');
   const ctx = canvas.getContext('2d');

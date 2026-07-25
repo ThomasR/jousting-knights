@@ -27,4 +27,5 @@ export const slider = document.getElementById('boardSize');
 export const paletteInfo = document.getElementById('palette-info');
 export const armyInfo = document.getElementById('army-info');
 export const canvasContainer = document.querySelector('.canvas-container');
+export const canvas = canvasContainer.querySelector('canvas');
 export const checkboxGridContainer = document.querySelector('.grid-container');

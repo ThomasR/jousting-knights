@@ -18,11 +18,12 @@
 import { boardSizes, colors } from './config.mjs';
 import updateBoard from './workerBridge.mjs';
 
-import { canvasContainer, saveButton, sizeInput } from './htmlElements.mjs';
+import { canvas, canvasContainer, saveButton, sizeInput } from './htmlElements.mjs';
 import { armyField, enmitiesField, paletteField } from './formFields.mjs';
 import { updateUrl } from './url.mjs';
 import { updateTitle } from './page.mjs';
 import { getDefaultEnmities } from './coreLogic.mjs';
+import { resetZoom } from './canvas.mjs';
 
 let lastValid = null;
 
@@ -72,6 +73,7 @@ export default function refresh(event) {
 
   updateTitle(army);
 
+  resetZoom(canvas);
   canvasContainer.classList.add('loading');
   updateBoard({
     army,

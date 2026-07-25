@@ -15,7 +15,7 @@
  *
  */
 
-import {incrementalDraw, clear }from './canvas.mjs';
+import { clear, incrementalDraw } from './canvas.mjs';
 import { getPixelPainter } from './coreLogic.mjs';
 
 const sharedState = {
