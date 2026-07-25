@@ -17,8 +17,8 @@ The pattern generation rule in a nutshell:
 
 This produces incredible patterns, especially when using multiple piece types. See the _Gallery_ below for examples.
 
-In addition to the piece types presented in the videos, this app also features _camels_, _giraffes_, _stags_, and
-_elands_.
+In addition to the piece types presented in the videos, this app also features _camels_, _geckos_, _giraffes_, _stags_,
+_commuters_, and _elands_.
 
 ## Try it out now
 
@@ -26,9 +26,9 @@ Live version: [https://thomas-rosenau.de/jousting-knights](https://thomas-rosena
 
 ## Usage
 
-* Enter a list of chess pieces in the _Army_ field, separated by spaces or commas.
-  Choose a color palette you like and enter it in the _Color palette_ field.
-  Note that you need one more color than the number of pieces to account for empty squares.
+* Enter a list of chess pieces in the _Army_ field, separated by spaces or commas. Choose a color palette you like and
+  enter it in the _Color palette_ field. Note that you need one more color than the number of pieces to account for
+  empty squares.
 * Configure enmities by checking the checkboxes. By default, any given piece attacks all other piece types, but not
   itself.
 * Alternatively, pick one of the examples at the bottom or click the _Random_ button!

@@ -53,7 +53,7 @@ export default function () {
       button.dataset.army = army;
       button.dataset.palette = palette;
       if (!enmities) {
-        let armySize = [...army.matchAll(/\S+/g)].length;
+        let armySize = army.match(/\S+/g).length;
         enmities = getDefaultEnmities(armySize);
       }
       button.dataset.enmities = enmities;
@@ -64,9 +64,7 @@ export default function () {
         armyField.stringValue = button.dataset.army;
         paletteField.stringValue = button.dataset.palette;
         armyInput.dispatchEvent(new Event('input'));
-        if (button.dataset.enmities) {
-          enmitiesField.stringValue = button.dataset.enmities;
-        }
+        enmitiesField.stringValue = button.dataset.enmities;
         refresh();
       });
     });
