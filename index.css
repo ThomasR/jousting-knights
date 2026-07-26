@@ -76,8 +76,8 @@ label[data-invalid-message] {
         pointer-events: none;
     }
 
-    &:hover::before,
-    &:hover::after {
+    &:not(.loading):hover::before,
+    &:not(.loading):hover::after {
         display: block;
         content: "";
         z-index: 1;
@@ -87,14 +87,14 @@ label[data-invalid-message] {
         box-shadow: 0 0 0 1px hsl(none 0% 100% / 0.75);
     }
 
-    &:hover::before {
+    &:not(.loading):hover::before {
         top: 0;
         left: calc(50% - 1px / 2);
         width: 1px;
         height: 100%;
     }
 
-    &:hover::after {
+    &:not(.loading):hover::after {
         top: calc(50% - 1px / 2);
         left: 0;
         width: 100%;
